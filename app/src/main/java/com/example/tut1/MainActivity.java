@@ -24,11 +24,7 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.GraphViewSeries.GraphViewStyle;
 import com.jjoe64.graphview.LineGraphView;
 
-/*
-*	[LL]: Importante, se agrego  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-*	con eso funciona el discovery de Bluetooth para Android 6.0, si no no funcionaba
-*
-*/
+//TODO: [LL]: Obtener el canal implicito en el paquete y graficar segun corresponda
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
@@ -75,50 +71,46 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
 					byte[] readBuf = (byte[]) msg.obj;
 					//[LL]:
-					for (int i = 0; i < (readBuf.length -8) ; i++) {
-						String strIncom_aux = new String(readBuf, i, 8);    // create string from bytes array
-						String strIncom = new String(readBuf, (strIncom_aux.indexOf('s') + i), 6);
-						Log.d("strIncom", strIncom);
-						if (strIncom.indexOf('.') == 2 && strIncom.indexOf('s') == 0) {
-							//[LL]if (strIncom.indexOf('s') == 0) {
-							strIncom = strIncom.replace("s", "");
-							if (isFloatNumber(strIncom)) {
-								Series.appendData(new GraphViewData(graph2LastXValue, Double.parseDouble(strIncom)), AutoScrollX);
+					for (int i = 0; i < (readBuf.length -4) ; i++) {
+						int data_aux[] = new int[]{(int) readBuf[i]&0xff, (int) readBuf[i + 1]&0xff, (int) readBuf[i + 2]&0xff, (int) readBuf[i + 3]&0xff};
+						if ((data_aux[0] & 0x80) == 0x80 && (data_aux[1] & 0x80) == 0 && (data_aux[2] & 0x80) == 0 && (data_aux[3] & 0x80) == 0) {
+							double data = ProcessData(data_aux);
+							i = i + 3;
+							Series.appendData(new GraphViewData(graph2LastXValue, data), AutoScrollX);
+							//[LL]:
+							Series2.appendData(new GraphViewData(graph2LastXValue, data), AutoScrollX);
+
+
+							//X-axis control
+							if (graph2LastXValue >= Xview && Lock == true) {
+								Series.resetData(new GraphViewData[]{});
 								//[LL]:
-								Series2.appendData(new GraphViewData(graph2LastXValue, Double.parseDouble(strIncom)), AutoScrollX);
+								Series2.resetData(new GraphViewData[]{});
+								graph2LastXValue = 0;
+							} else graph2LastXValue += 0.1;
 
-
-								//X-axis control
-								if (graph2LastXValue >= Xview && Lock == true) {
-									Series.resetData(new GraphViewData[]{});
-									//[LL]:
-									Series2.resetData(new GraphViewData[]{});
-									graph2LastXValue = 0;
-								} else graph2LastXValue += 0.1;
-
-								if (Lock == true) {
-									graphView.setViewPort(0, Xview);
-									graphView2.setViewPort(0, Xview);
-								} else {
-									graphView.setViewPort(graph2LastXValue - Xview, Xview);
-									graphView2.setViewPort(graph2LastXValue - Xview, Xview);
-								}
-
-								//refresh
-								//[LL]
-
-								GraphView.removeView(graphView);
-								GraphView.addView(graphView);
-								GraphView2.removeView(graphView2);
-								GraphView2.addView(graphView2);
+							if (Lock == true) {
+								graphView.setViewPort(0, Xview);
+								graphView2.setViewPort(0, Xview);
+							} else {
+								graphView.setViewPort(graph2LastXValue - Xview, Xview);
+								graphView2.setViewPort(graph2LastXValue - Xview, Xview);
 							}
+
+							//refresh
+							//[LL]
+
+							GraphView.removeView(graphView);
+							GraphView.addView(graphView);
+							GraphView2.removeView(graphView2);
+							GraphView2.addView(graphView2);
 						}
-					}
 
 						break;
-
+					}
 			}
-		}
+        }
+
 		public boolean isFloatNumber(String num) {
 			//Log.d("checkfloatNum", num);
 			try {
@@ -128,7 +120,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			}
 			return true;
 		}
-
 	};
 
 	@Override
@@ -158,7 +149,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		graphView = new LineGraphView(  
 				this // context  
 				, "Graph" // heading  
-				);  		
+				);
 		graphView.setViewPort(0, Xview);
 		graphView.setScrollable(true);
 		graphView.setScalable(true);	
@@ -166,7 +157,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		graphView.setLegendAlign(LegendAlign.BOTTOM);
 		graphView.setManualYAxis(true);
 		//graphView.setManualYAxisBounds(10000, 0);
-		graphView.setManualYAxisBounds(10, 0);
+		graphView.setManualYAxisBounds(16777216, 0); // 16777216 = 2´24 maximo valor de cuentas a representar por los 24 bits. El fisio manda datos negativos?
 		graphView.addSeries(Series); // data
 		GraphView.addView(graphView);
 
@@ -189,7 +180,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		graphView2.setLegendAlign(LegendAlign.BOTTOM);
 		graphView2.setManualYAxis(true);
 		//graphView.setManualYAxisBounds(10000, 0);
-		graphView2.setManualYAxisBounds(10, 0);
+		graphView2.setManualYAxisBounds(16777216, 0);
 		graphView2.addSeries(Series2); // data
 		GraphView2.addView(graphView2);
 	}
@@ -259,5 +250,39 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		}
 	}
 
+    /*
+	* ProcessData recibe un array int[] con los 4 bytes del paquete y obtiene de él el valor de 24 bits implicito en el paquete
+	*Protocolo de recepción para el Fisioremoto:
+	* Formato de los Datos, son 4 bytes:  1,X,CH2,CH1,CH0,b23,b22,b21 | 0,b20,b19,b18,b17,b16,b15,b14 | 0,b13,b12,b11,b10,b9,b8,b7 | 0,b6,b5,b4,b3,b2,b1,b0
+	**/
+	double ProcessData(int[] data)
+	{
+		//data[0] parte alta alta
+		//data[1] parte alta
+		//data[2] parte media
+		//data[3] parte baja
+
+		int aux = 0;
+
+		aux = (int)((data[2] << 7) & 0xff);
+		data[3] = (int)((data[3] | aux) & 0xff);
+		data[2] = (int)((data[2] >> 1) & 0xff);
+
+		aux = (int)((data[1] << 6) & 0xff);
+		data[2] = (int)((data[2] | aux) & 0xff);
+		data[1] = (int)((data[1] >> 2) & 0xff);
+
+		aux = (int)((data[0] << 5) & 0xff);
+		data[1] = (int)(data[1] | aux);
+
+		//UInt32 dato = (UInt32)(data[1] << 16) + (UInt32)(data[2] << 8) + (UInt32)(data[3]);
+		int neg=0x00;
+		if ((data[1] & 0x80) == 0x80)
+			neg = 0xFF;
+		int dato = (neg << 24) + (data[1] << 16) + (data[2] << 8) + (data[3]);
+
+		//return Convert.ToDouble(dato) / Math.Pow(2, 23) * SCALE;
+        return (double)dato;
+	}
 
 }

@@ -24,8 +24,8 @@ public final class R {
     }
     public static final class id {
         public static final int Graph=0x7f080004;
-        public static final int Graph_1=0x7f080005;
-        public static final int Graph_2=0x7f080006;
+        public static final int Graph_0=0x7f080005;
+        public static final int Graph_1=0x7f080006;
         public static final int LL2=0x7f080007;
         public static final int LLX=0x7f08000f;
         public static final int bConnect=0x7f080009;

@@ -16,14 +16,14 @@
         android:weightSum="10">
 
         <LinearLayout
-            android:id="@+id/Graph_1"
+            android:id="@+id/Graph_0"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"></LinearLayout>
 
         <LinearLayout
-            android:id="@+id/Graph_2"
+            android:id="@+id/Graph_1"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"

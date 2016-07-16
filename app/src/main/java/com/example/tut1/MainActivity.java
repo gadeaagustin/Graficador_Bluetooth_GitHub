@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,6 +26,9 @@ import com.jjoe64.graphview.LineGraphView;
 //TODO: [LL]: Obtener el canal implicito en el paquete y graficar segun corresponda
 
 public class MainActivity extends Activity implements View.OnClickListener{
+
+    public static final int MIN_Y_Grap_0 = -8000000, MIN_Y_Grap_1 = -8000000, MAX_Y_Grap_0 = 8000000, MAX_Y_Grap_1 = 8000000;
+
 
 	@Override
 	public void onBackPressed() {
@@ -47,11 +49,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	ToggleButton tbScroll;
 	ToggleButton tbStream;
 	//GraphView init
-	static LinearLayout GraphView, GraphView2;
-	static GraphView graphView, graphView2;
-	static GraphViewSeries Series, Series2;
+	static LinearLayout GraphView_0, GraphView_1;
+	static GraphView graphView_0, graphView_1;
+	static GraphViewSeries Series_0, Series_1;
 	//graph value
-	private static double graph2LastXValue = 0;
+	private static double graph2LastXValue_0 =0, graph2LastXValue_1 =0;
 	private static int Xview=10;
 	Button bConnect, bDisconnect;
 
@@ -68,46 +70,57 @@ public class MainActivity extends Activity implements View.OnClickListener{
 					Bluetooth.connectedThread.start();
 					break;
 				case Bluetooth.MESSAGE_READ:
-
-					byte[] readBuf = (byte[]) msg.obj;
-					//[LL]:
-					for (int i = 0; i < (readBuf.length -4) ; i++) {
+                    byte[] readBuf = (byte[]) msg.obj;
+					for (int i = 0; i < (readBuf.length -4) ; i++) {  //[LL]: Barro el buffer de 1024 bytes
 						int data_aux[] = new int[]{(int) readBuf[i]&0xff, (int) readBuf[i + 1]&0xff, (int) readBuf[i + 2]&0xff, (int) readBuf[i + 3]&0xff};
 						if ((data_aux[0] & 0x80) == 0x80 && (data_aux[1] & 0x80) == 0 && (data_aux[2] & 0x80) == 0 && (data_aux[3] & 0x80) == 0) {
-							double data = ProcessData(data_aux);
+							double data = ProcessData(data_aux); //Obtengo el valor a graficar segun el formato de los datos
+							int channel= (data_aux[0] & 0x38)>>3; //Obtengo el canal a graficar. Mascara= 0x38= 111000b
 							i = i + 3;
-							Series.appendData(new GraphViewData(graph2LastXValue, data), AutoScrollX);
-							//[LL]:
-							Series2.appendData(new GraphViewData(graph2LastXValue, data), AutoScrollX);
 
+							switch(channel)
+							{
+								case 0:
+									Series_0.appendData(new GraphViewData(graph2LastXValue_0, data), AutoScrollX);
+									//X-axis control
+									if (graph2LastXValue_0 >= Xview && Lock == true) {
+										Series_0.resetData(new GraphViewData[]{});
+										graph2LastXValue_0 = 0;
+									} else graph2LastXValue_0 += 0.1;
 
-							//X-axis control
-							if (graph2LastXValue >= Xview && Lock == true) {
-								Series.resetData(new GraphViewData[]{});
-								//[LL]:
-								Series2.resetData(new GraphViewData[]{});
-								graph2LastXValue = 0;
-							} else graph2LastXValue += 0.1;
+									if (Lock == true) {
+										graphView_0.setViewPort(0, Xview);
+									} else {
+										graphView_0.setViewPort(graph2LastXValue_0 - Xview, Xview);
+									}
+									//refresh
+									GraphView_0.removeView(graphView_0);
+									GraphView_0.addView(graphView_0);
+									break;
 
-							if (Lock == true) {
-								graphView.setViewPort(0, Xview);
-								graphView2.setViewPort(0, Xview);
-							} else {
-								graphView.setViewPort(graph2LastXValue - Xview, Xview);
-								graphView2.setViewPort(graph2LastXValue - Xview, Xview);
+								case 1:
+									Series_1.appendData(new GraphViewData(graph2LastXValue_1, data), AutoScrollX);
+									//X-axis control
+									if (graph2LastXValue_1 >= Xview && Lock == true) {
+										Series_1.resetData(new GraphViewData[]{});
+										graph2LastXValue_1 = 0;
+									} else graph2LastXValue_1 += 0.1;
+
+									if (Lock == true) {
+										graphView_1.setViewPort(0, Xview);
+									} else {
+										graphView_1.setViewPort(graph2LastXValue_1 - Xview, Xview);
+									}
+									//refresh
+									GraphView_1.removeView(graphView_1);
+									GraphView_1.addView(graphView_1);
+									break;
 							}
-
-							//refresh
-							//[LL]
-
-							GraphView.removeView(graphView);
-							GraphView.addView(graphView);
-							GraphView2.removeView(graphView2);
-							GraphView2.addView(graphView2);
 						}
-
-						break;
 					}
+					break;
+				default:
+					break;
 			}
         }
 
@@ -141,48 +154,47 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		Bluetooth.gethandler(mHandler);
 
 		//init graphview
-		GraphView = (LinearLayout) findViewById(R.id.Graph_1);
+		GraphView_0 = (LinearLayout) findViewById(R.id.Graph_0);
 		// init example series data------------------- 
-		Series = new GraphViewSeries("Signal", 
+		Series_0 = new GraphViewSeries("Signal",
 				new GraphViewStyle(Color.YELLOW, 2),//color and thickness of the line 
 				new GraphViewData[] {new GraphViewData(0, 0)});
-		graphView = new LineGraphView(  
+		graphView_0 = new LineGraphView(
 				this // context  
 				, "Graph" // heading  
 				);
-		graphView.setViewPort(0, Xview);
-		graphView.setScrollable(true);
-		graphView.setScalable(true);	
-		graphView.setShowLegend(true); 
-		graphView.setLegendAlign(LegendAlign.BOTTOM);
-		graphView.setManualYAxis(true);
-		//graphView.setManualYAxisBounds(10000, 0);
-		graphView.setManualYAxisBounds(16777216, 0); // 16777216 = 2´24 maximo valor de cuentas a representar por los 24 bits. El fisio manda datos negativos?
-		graphView.addSeries(Series); // data
-		GraphView.addView(graphView);
+		graphView_0.setViewPort(0, Xview);
+		graphView_0.setScrollable(true);
+		graphView_0.setScalable(true);
+		graphView_0.setShowLegend(true);
+		graphView_0.setLegendAlign(LegendAlign.BOTTOM);
+		graphView_0.setManualYAxis(true);
+		//graphView_0.setManualYAxisBounds(10000, 0);
+		graphView_0.setManualYAxisBounds(MAX_Y_Grap_0, MIN_Y_Grap_0);
+		graphView_0.addSeries(Series_0); // data
+		GraphView_0.addView(graphView_0);
 
 
 		//[LL]
 		//init graphview
-		GraphView2 = (LinearLayout) findViewById(R.id.Graph_2);
+		GraphView_1 = (LinearLayout) findViewById(R.id.Graph_1);
 		// init example series data-------------------
-		Series2 = new GraphViewSeries("Signa2",
+		Series_1 = new GraphViewSeries("Signa2",
 				new GraphViewStyle(Color.RED, 2),//color and thickness of the line
 				new GraphViewData[] {new GraphViewData(0, 0)});
-		graphView2 = new LineGraphView(
+		graphView_1 = new LineGraphView(
 				this // context
 				, "Graph" // heading
 		);
-		graphView2.setViewPort(0, Xview);
-		graphView2.setScrollable(true);
-		graphView2.setScalable(true);
-		graphView2.setShowLegend(true);
-		graphView2.setLegendAlign(LegendAlign.BOTTOM);
-		graphView2.setManualYAxis(true);
-		//graphView.setManualYAxisBounds(10000, 0);
-		graphView2.setManualYAxisBounds(16777216, 0);
-		graphView2.addSeries(Series2); // data
-		GraphView2.addView(graphView2);
+		graphView_1.setViewPort(0, Xview);
+		graphView_1.setScrollable(true);
+		graphView_1.setScalable(true);
+		graphView_1.setShowLegend(true);
+		graphView_1.setLegendAlign(LegendAlign.BOTTOM);
+		graphView_1.setManualYAxis(true);
+		graphView_1.setManualYAxisBounds(MAX_Y_Grap_1, MIN_Y_Grap_1);
+		graphView_1.addSeries(Series_1); // data
+		GraphView_1.addView(graphView_1);
 	}
 
 	void ButtonInit(){

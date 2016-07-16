@@ -2,12 +2,15 @@ package com.example.tut1;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.media.MediaScannerConnection;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,6 +25,11 @@ import com.jjoe64.graphview.GraphView.LegendAlign;
 import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.GraphViewSeries.GraphViewStyle;
 import com.jjoe64.graphview.LineGraphView;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 //TODO: [LL]: Obtener el canal implicito en el paquete y graficar segun corresponda
 
@@ -77,6 +85,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
 							double data = ProcessData(data_aux); //Obtengo el valor a graficar segun el formato de los datos
 							int channel= (data_aux[0] & 0x38)>>3; //Obtengo el canal a graficar. Mascara= 0x38= 111000b
 							i = i + 3;
+
+							//Guardar datos en un archivo:
+
+							SaveData(Double.toString(data) ,"Datos.txt");
 
 							switch(channel)
 							{
@@ -296,5 +308,32 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		//return Convert.ToDouble(dato) / Math.Pow(2, 23) * SCALE;
         return (double)dato;
 	}
+
+	//Guardar datos en un archivo:
+void SaveData(String data, String FileName) {
+	try {
+		// Creates a trace file in the primary external storage space of the
+		// current application.
+		// If the file does not exists, it is created.
+		File traceFile = new File(((Context) this).getExternalFilesDir(null), FileName);
+		if (!traceFile.exists())
+			traceFile.createNewFile();
+		// Adds a line to the trace file
+		BufferedWriter writer = new BufferedWriter(new FileWriter(traceFile, true /*append*/));
+		writer.write(data);
+		writer.close();
+		// Refresh the data so it can seen when the device is plugged in a
+		// computer. You may have to unplug and replug the device to see the
+		// latest changes. This is not necessary if the user should not modify
+		// the files.
+		MediaScannerConnection.scanFile((Context) (this),
+				new String[]{traceFile.toString()},
+				null,
+				null);
+
+	} catch (IOException e) {
+		Log.e("com.example.tut1", "Unable to write to the TraceFile.txt file.");
+	}
+}
 
 }

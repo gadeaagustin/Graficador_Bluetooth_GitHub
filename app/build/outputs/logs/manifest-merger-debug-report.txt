@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:1:1-38:16
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:1:1-39:16
 	xmlns:android
 		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:1:11-69
 	package
@@ -35,43 +35,47 @@ uses-permission#android.permission.ACCESS_FINE_LOCATION
 ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:12:9-83
 	android:name
 		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:12:26-80
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:13:9-85
+	android:name
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:13:26-82
 application
-ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:14:9-36:23
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:15:9-37:23
 	android:label
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:16:13-45
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:17:13-45
 	android:icon
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:15:13-49
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:16:13-49
 	android:theme
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:17:13-44
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:18:13-44
 activity#com.example.tut1.MainActivity
-ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:18:13-26:24
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:19:13-27:24
 	android:label
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:20:17-60
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:21:17-60
 	android:name
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:19:17-45
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:20:17-45
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:21:17-25:33
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:22:17-26:33
 action#android.intent.action.MAIN
-ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:22:21-73
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:23:21-73
 	android:name
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:22:29-70
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:23:29-70
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:24:21-81
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:25:21-81
 	android:name
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:24:31-78
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:25:31-78
 activity#com.example.tut1.Bluetooth
-ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:27:13-35:24
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:28:13-36:24
 	android:label
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:30:17-42
+	android:name
 		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:29:17-42
-	android:name
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:28:17-42
 intent-filter#android.intent.action.BT1+android.intent.category.DEFAULT
-ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:30:17-34:33
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:31:17-35:33
 action#android.intent.action.BT1
-ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:31:21-72
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:32:21-72
 	android:name
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:31:29-69
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:32:29-69
 category#android.intent.category.DEFAULT
-ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:33:21-80
+ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:34:21-80
 	android:name
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:33:31-77
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:34:31-77

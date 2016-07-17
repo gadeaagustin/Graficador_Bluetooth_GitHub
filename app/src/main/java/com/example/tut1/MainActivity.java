@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import android.view.View.OnClickListener;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
@@ -30,13 +31,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 //TODO: [LL]: Obtener el canal implicito en el paquete y graficar segun corresponda
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
     public static final int MIN_Y_Grap_0 = -8000000, MIN_Y_Grap_1 = -8000000, MAX_Y_Grap_0 = 8000000, MAX_Y_Grap_1 = 8000000;
-
+	SimpleFileDialog FileSaveDialog;
 
 	@Override
 	public void onBackPressed() {
@@ -50,12 +52,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	static boolean Lock;//whether lock the x-axis to 0-5
 	static boolean AutoScrollX;//auto scroll to the last x value
 	static boolean Stream;//Start or stop streaming
+	static boolean Record; //Enable Data recording when set to true
 	//Button init
 	Button bXminus;
 	Button bXplus;
 	ToggleButton tbLock;
 	ToggleButton tbScroll;
 	ToggleButton tbStream;
+	ToggleButton tbRecord;
 	//GraphView init
 	static LinearLayout GraphView_0, GraphView_1;
 	static GraphView graphView_0, graphView_1;
@@ -82,13 +86,24 @@ public class MainActivity extends Activity implements View.OnClickListener{
 					for (int i = 0; i < (readBuf.length -4) ; i++) {  //[LL]: Barro el buffer de 1024 bytes
 						int data_aux[] = new int[]{(int) readBuf[i]&0xff, (int) readBuf[i + 1]&0xff, (int) readBuf[i + 2]&0xff, (int) readBuf[i + 3]&0xff};
 						if ((data_aux[0] & 0x80) == 0x80 && (data_aux[1] & 0x80) == 0 && (data_aux[2] & 0x80) == 0 && (data_aux[3] & 0x80) == 0) {
+							String DataWrite = null;;
+							try {
+								DataWrite = new String(readBuf, i, 4, "ISO-8859-1"); //"ISO-8859-1" encoding para que tome correctamente los extended ascii
+							} catch (UnsupportedEncodingException e) {
+								e.printStackTrace();
+							}
+							if(Record==true) {
+								String DirToSaveType;
+								if (FileSaveDialog.Get_m_dir().equals("") ==false)
+									DirToSaveType= FileSaveDialog.Get_m_dir();
+								else DirToSaveType= FileSaveDialog.Get_m_sdcardDirectory();
+								SaveData(DataWrite,DirToSaveType ,FileSaveDialog.Get_Selected_File_Name()); //Guardo los datos en un archivo
+							}
 							double data = ProcessData(data_aux); //Obtengo el valor a graficar segun el formato de los datos
 							int channel= (data_aux[0] & 0x38)>>3; //Obtengo el canal a graficar. Mascara= 0x38= 111000b
 							i = i + 3;
 
-							//Guardar datos en un archivo:
-
-							SaveData(Double.toString(data) ,"Datos.txt");
+							//SaveData(Double.toString(data) ,"Datos.txt"); //Guardo los datos en un archivo
 
 							switch(channel)
 							{
@@ -226,10 +241,48 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		tbScroll.setOnClickListener(this);
 		tbStream = (ToggleButton)findViewById(R.id.tbStream);
 		tbStream.setOnClickListener(this);
+		//Record Button
+		tbRecord = (ToggleButton)findViewById(R.id.tbRecord);
+		tbRecord.setOnClickListener(new OnClickListener() {
+		String m_chosen;
+		@Override
+		public void onClick(View v) {
+
+			if (tbRecord.isChecked()){
+				Record = true;
+				/////////////////////////////////////////////////////////////////////////////////////////////////
+				//Create FileOpenDialog and register a callback
+				/////////////////////////////////////////////////////////////////////////////////////////////////
+				FileSaveDialog =  new SimpleFileDialog(MainActivity.this, "FileSave",
+						new SimpleFileDialog.SimpleFileDialogListener()
+						{
+							@Override
+							public void onChosenDir(String chosenDir)
+							{
+								// The code in this function will be executed when the Record button is pushed
+								m_chosen = chosenDir;
+								Toast.makeText(MainActivity.this, "Chosen FileOpenDialog File: " +
+										m_chosen, Toast.LENGTH_LONG).show();
+							}
+						});
+
+				//You can change the default filename using the public variable "Default_File_Name"
+				FileSaveDialog.Default_File_Name = "Datos.txt";
+				FileSaveDialog.chooseFile_or_Dir();
+
+				/////////////////////////////////////////////////////////////////////////////////////////////////
+			} else{
+				Record = false;
+			}
+		}
+	});
+
+
 		//init toggleButton
 		Lock=true;
 		AutoScrollX=true;
 		Stream=true;
+		Record=false;
 	}
 
 	@Override
@@ -271,6 +324,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
 					Bluetooth.connectedThread.write("Q");
 			}
 			break;
+		case R.id.tbRecord:
+			if (tbRecord.isChecked()){
+				Record = true;
+
+			}else{
+				Record = false;
+			}
+			break;
 		}
 	}
 
@@ -299,7 +360,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		aux = (int)((data[0] << 5) & 0xff);
 		data[1] = (int)(data[1] | aux);
 
-		//UInt32 dato = (UInt32)(data[1] << 16) + (UInt32)(data[2] << 8) + (UInt32)(data[3]);
 		int neg=0x00;
 		if ((data[1] & 0x80) == 0x80)
 			neg = 0xFF;
@@ -310,12 +370,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	}
 
 	//Guardar datos en un archivo:
-void SaveData(String data, String FileName) {
+void SaveData(String data, String Directory, String FileName) {
 	try {
 		// Creates a trace file in the primary external storage space of the
 		// current application.
 		// If the file does not exists, it is created.
-		File traceFile = new File(((Context) this).getExternalFilesDir(null), FileName);
+		//File traceFile = new File(((Context) this).getExternalFilesDir(null), FileName);
+		File traceFile = new File(Directory, FileName);
 		if (!traceFile.exists())
 			traceFile.createNewFile();
 		// Adds a line to the trace file

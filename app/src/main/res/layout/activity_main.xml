@@ -58,8 +58,18 @@
             android:id="@+id/bDisconnect"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
-            android:text="Disconnect"
+            android:text="Desconectar"
             android:textSize="10dp"
+            android:textColor="@color/white"/>
+
+        <ToggleButton
+            android:id="@+id/tbRecord"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:checked="false"
+            android:textOff="RECORD"
+            android:textOn="STOP"
             android:textColor="@color/white"/>
 
         <TextView

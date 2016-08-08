@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Lucas\AndroidStudioProjects\Tut1\app\libs\GraphView-3.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="e187192858ff7a5ff7864d6f6a754427e6cb3a87">
-        <dex dex="C:\Users\Lucas\AndroidStudioProjects\Tut1\app\build\intermediates\pre-dexed\debug\GraphView-3.0-fe258612404b85fcc705273b105b45137764babc.jar" />
-    </item>
-    <item
         jar="C:\Users\Lucas\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
         jumboMode="false"
         revision="23.0.1"
@@ -16,11 +9,39 @@
         <dex dex="C:\Users\Lucas\AndroidStudioProjects\Tut1\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-ec0da9a37064a7064a2a30036c33d5051a60d99c.jar" />
     </item>
     <item
-        jar="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\libs\GraphView-3.0.jar"
+        jar="C:\Users\Lucas\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-3101e2d61c47f75df50088c837e1aff4e116b74e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\pre-dexed\debug\classes-595e2766e8bd599e552b256606049afa922f4f4a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\libs\internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-6ed8aca8c2eb0df28df1112fdac3656fa522ffc4.jar" />
+    </item>
+    <item
+        jar="C:\Users\Lucas\AndroidStudioProjects\Tut1\app\libs\GraphView-3.0.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="e187192858ff7a5ff7864d6f6a754427e6cb3a87">
-        <dex dex="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\pre-dexed\debug\GraphView-3.0-418f1b73fc90d69e7dd31acbd369581202677197.jar" />
+        <dex dex="C:\Users\Lucas\AndroidStudioProjects\Tut1\app\build\intermediates\pre-dexed\debug\GraphView-3.0-fe258612404b85fcc705273b105b45137764babc.jar" />
+    </item>
+    <item
+        jar="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\exploded-aar\com.jjoe64\graphview\4.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="12fdadebe9c11de685613e9fd8e69a39f6fa4c91">
+        <dex dex="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\pre-dexed\debug\classes-59758e5d1a3ab8b15b415d096166c820862c7d22.jar" />
     </item>
 
 </items>

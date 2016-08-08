@@ -15,19 +15,19 @@
         android:layout_weight="15"
         android:weightSum="10">
 
-        <LinearLayout
-            android:id="@+id/Graph_0"
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graphView_0"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"></LinearLayout>
+            android:layout_weight="5"></com.jjoe64.graphview.GraphView>
 
-        <LinearLayout
-            android:id="@+id/Graph_1"
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graphView_1"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"></LinearLayout>
+            android:layout_weight="5"></com.jjoe64.graphview.GraphView>
     </LinearLayout>
 
     <LinearLayout

@@ -15,12 +15,15 @@ ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\mai
 		INJECTED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml
 uses-sdk
 ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:6:9-8:45
+MERGED from [com.android.support:support-v4:22.1.1] C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\AndroidManifest.xml:20:5-43
+MERGED from [com.jjoe64:graphview:4.1.1] C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\exploded-aar\com.jjoe64\graphview\4.1.1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:22.1.1] C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:8:13-42
 		INJECTED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:7:13-38
+		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:7:13-39
 		INJECTED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.BLUETOOTH
@@ -41,6 +44,9 @@ ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\mai
 		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:13:26-82
 application
 ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:15:9-37:23
+MERGED from [com.android.support:support-v4:22.1.1] C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\AndroidManifest.xml:22:5-20
+MERGED from [com.jjoe64:graphview:4.1.1] C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\exploded-aar\com.jjoe64\graphview\4.1.1\AndroidManifest.xml:11:5-12:19
+MERGED from [com.android.support:support-v4:22.1.1] C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\src\main\AndroidManifest.xml:17:13-45
 	android:icon

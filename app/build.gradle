@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.tut1"
-        minSdkVersion 8
+        minSdkVersion 12
         targetSdkVersion 15
     }
 
@@ -20,5 +20,6 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:18.0.0'
-    compile files('libs/GraphView-3.0.jar')
+   // compile files('libs/GraphView-4.1.1.jar')
+    compile 'com.jjoe64:graphview:4.1.1'
 }

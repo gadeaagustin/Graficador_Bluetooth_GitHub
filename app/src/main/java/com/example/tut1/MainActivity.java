@@ -32,10 +32,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 
-//TODO: [LL]: Obtener el canal implicito en el paquete y graficar segun corresponda
+//TODO: [LL]: Probar la opcion de recording y dejarla funcionando ok
 
 public class MainActivity extends Activity implements View.OnClickListener{
+	static int Sereies_0_index =0, Sereies_1_index=0;
+	static boolean Record_Dialog_On;
+	//static String DataWrite = new String("");
+	static byte[] DataWrite= new byte[1024*100];
+	static int j=0;
+
 
     public static final int MIN_Y_Grap_0 = -8000000, MIN_Y_Grap_1 = -8000000, MAX_Y_Grap_0 = 8000000, MAX_Y_Grap_1 = 8000000;
 	SimpleFileDialog FileSaveDialog;
@@ -44,7 +51,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		if (Bluetooth.connectedThread != null) {
-			Bluetooth.connectedThread.write("Q");}//Stop streaming
+			Bluetooth.connectedThread.write("0");}//Stop streaming
 		super.onBackPressed();
 	}
 
@@ -66,10 +73,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	static GraphViewSeries Series_0, Series_1;
 	//graph value
 	private static double graph2LastXValue_0 =0, graph2LastXValue_1 =0;
-	private static int Xview=10;
+	private static int Xview=60;
 	Button bConnect, bDisconnect;
 
 	private Handler mHandler = new Handler() {
+		boolean recording = false;
 		@Override
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
@@ -82,73 +90,124 @@ public class MainActivity extends Activity implements View.OnClickListener{
 					Bluetooth.connectedThread.start();
 					break;
 				case Bluetooth.MESSAGE_READ:
-                    byte[] readBuf = (byte[]) msg.obj;
-					for (int i = 0; i < (readBuf.length -4) ; i++) {  //[LL]: Barro el buffer de 1024 bytes
-						int data_aux[] = new int[]{(int) readBuf[i]&0xff, (int) readBuf[i + 1]&0xff, (int) readBuf[i + 2]&0xff, (int) readBuf[i + 3]&0xff};
-						if ((data_aux[0] & 0x80) == 0x80 && (data_aux[1] & 0x80) == 0 && (data_aux[2] & 0x80) == 0 && (data_aux[3] & 0x80) == 0) {
-							String DataWrite = null;;
-							try {
-								DataWrite = new String(readBuf, i, 4, "ISO-8859-1"); //"ISO-8859-1" encoding para que tome correctamente los extended ascii
-							} catch (UnsupportedEncodingException e) {
-								e.printStackTrace();
-							}
-							if(Record==true) {
+					if (!Record_Dialog_On) {
+						byte[] readBuf = (byte[]) msg.obj;
+						for (int i = 0; i < (readBuf.length - 4); i++) {  //[LL]: Barrido el buffer de 1024 bytes
+							int data_aux[] = new int[]{(int) readBuf[i] & 0xff, (int) readBuf[i + 1] & 0xff, (int) readBuf[i + 2] & 0xff, (int) readBuf[i + 3] & 0xff};
+							if ((data_aux[0] & 0x80) == 0x80 && (data_aux[1] & 0x80) == 0 && (data_aux[2] & 0x80) == 0 && (data_aux[3] & 0x80) == 0) {
+								//if(Record==true && (DataWrite.length()) < (1024 * 100)) {
+								if(Record==true && j < (1024*100)-4) {
+									recording = true;
+									/*String DataWrite_aux = "";
+									try {
+										DataWrite_aux = new String(readBuf, i, 4, "ISO-8859-1"); //"ISO-8859-1" encoding para que tome correctamente los extended asci
+									} catch (UnsupportedEncodingException e) {
+										e.printStackTrace();
+									}
+									*/
+										//DataWrite = DataWrite.concat(DataWrite_aux);
+										DataWrite[j] = (byte) (data_aux[0] & 0xff);
+										DataWrite[j+1] = (byte) (data_aux[1] & 0xff);
+										DataWrite[j+2] = (byte) (data_aux[2] & 0xff);
+										DataWrite[j+3] = (byte) (data_aux[3] & 0xff);
+										j+=4;
+								//if(j == DataWrite.length -4)
+								//	j=0;
+
+								}
+							 else if (recording == true) {
+									Log.d("Gragando","grabando...");
+									String DataWrite_aux = "";
+									try {
+										DataWrite_aux = new String(DataWrite, 0, j+3, "ISO-8859-1"); //"ISO-8859-1" encoding para que tome correctamente los extended asci
+									} catch (UnsupportedEncodingException e) {
+										e.printStackTrace();
+									}
 								String DirToSaveType;
-								if (FileSaveDialog.Get_m_dir().equals("") ==false)
-									DirToSaveType= FileSaveDialog.Get_m_dir();
-								else DirToSaveType= FileSaveDialog.Get_m_sdcardDirectory();
-								SaveData(DataWrite,DirToSaveType ,FileSaveDialog.Get_Selected_File_Name()); //Guardo los datos en un archivo
+								if (FileSaveDialog.Get_m_dir().equals("") == false)
+									DirToSaveType = FileSaveDialog.Get_m_dir();
+								else DirToSaveType = FileSaveDialog.Get_m_sdcardDirectory();
+								SaveData(DataWrite_aux, DirToSaveType, FileSaveDialog.Get_Selected_File_Name()); //Guardo los datos en un archivo
+								Record = false;
+								tbRecord.setChecked(false);
+									recording= false;
+									j=0;
 							}
-							double data = ProcessData(data_aux); //Obtengo el valor a graficar segun el formato de los datos
-							int channel= (data_aux[0] & 0x38)>>3; //Obtengo el canal a graficar. Mascara= 0x38= 111000b
-							i = i + 3;
+								/*
+								if (Record == true) {
+									String DirToSaveType;
+									if (FileSaveDialog.Get_m_dir().equals("") == false)
+										DirToSaveType = FileSaveDialog.Get_m_dir();
+									else DirToSaveType = FileSaveDialog.Get_m_sdcardDirectory();
+									SaveData(DataWrite, DirToSaveType, FileSaveDialog.Get_Selected_File_Name()); //Guardo los datos en un archivo
+								}
+								*/
+								double data = ProcessData(data_aux); //Obtengo el valor a graficar segun el formato de los datos
+								int channel = (data_aux[0] & 0x38) >> 3; //Obtengo el canal a graficar. Mascara= 0x38= 111000b
+								i = i + 3;
 
-							//SaveData(Double.toString(data) ,"Datos.txt"); //Guardo los datos en un archivo
+								//SaveData(Double.toString(data) ,"Datos.txt"); //Guardo los datos en un archivo
 
-							switch(channel)
-							{
-								case 0:
-									Series_0.appendData(new GraphViewData(graph2LastXValue_0, data), AutoScrollX);
-									//X-axis control
-									if (graph2LastXValue_0 >= Xview && Lock == true) {
-										Series_0.resetData(new GraphViewData[]{});
-										graph2LastXValue_0 = 0;
-									} else graph2LastXValue_0 += 0.1;
+								switch (channel) {
+									case 0:
+										if (Sereies_0_index < 1000) { //[LL]:Esto lo puse para evitar picos en la memoria RAM
+											Series_0.appendData(new GraphViewData(graph2LastXValue_0, data), AutoScrollX);
+											Sereies_0_index++;
+										} else {
+											Series_0.resetData(new GraphViewData[]{});
+											Sereies_0_index = 0;
+										}
+										//X-axis control
+										if (graph2LastXValue_0 >= Xview && Lock == true) {
+											Series_0.resetData(new GraphViewData[]{});
+											graph2LastXValue_0 = 0;
+										} else graph2LastXValue_0 += 0.1;
 
-									if (Lock == true) {
-										graphView_0.setViewPort(0, Xview);
-									} else {
-										graphView_0.setViewPort(graph2LastXValue_0 - Xview, Xview);
-									}
-									//refresh
-									GraphView_0.removeView(graphView_0);
-									GraphView_0.addView(graphView_0);
-									break;
+										if (Lock == true) {
+											graphView_0.setViewPort(0, Xview);
+										} else {
+											graphView_0.setViewPort(graph2LastXValue_0 - Xview, Xview);
+										}
+										//refresh
+										GraphView_0.removeView(graphView_0);
+										GraphView_0.addView(graphView_0);
+										break;
 
-								case 1:
-									Series_1.appendData(new GraphViewData(graph2LastXValue_1, data), AutoScrollX);
-									//X-axis control
-									if (graph2LastXValue_1 >= Xview && Lock == true) {
-										Series_1.resetData(new GraphViewData[]{});
-										graph2LastXValue_1 = 0;
-									} else graph2LastXValue_1 += 0.1;
+									case 1:
+										if (Sereies_1_index < 1000) {
+											Series_1.appendData(new GraphViewData(graph2LastXValue_1, data), AutoScrollX);
+											Sereies_1_index++;
+										} else {
+											;
+											Series_1.resetData(new GraphViewData[]{});
+											Sereies_1_index = 0;
+										}
+										//X-axis control
+										if (graph2LastXValue_1 >= Xview && Lock == true) {
+											Series_1.resetData(new GraphViewData[]{});
+											graph2LastXValue_1 = 0;
+										} else graph2LastXValue_1 += 0.1;
 
-									if (Lock == true) {
-										graphView_1.setViewPort(0, Xview);
-									} else {
-										graphView_1.setViewPort(graph2LastXValue_1 - Xview, Xview);
-									}
-									//refresh
-									GraphView_1.removeView(graphView_1);
-									GraphView_1.addView(graphView_1);
-									break;
+										if (Lock == true) {
+											graphView_1.setViewPort(0, Xview);
+										} else {
+											graphView_1.setViewPort(graph2LastXValue_1 - Xview, Xview);
+										}
+										//refresh
+										GraphView_1.removeView(graphView_1);
+										GraphView_1.addView(graphView_1);
+										break;
+								}
 							}
 						}
 					}
-					break;
-				default:
-					break;
-			}
+
+						break;
+
+						default:
+							break;
+
+					}
         }
 
 		public boolean isFloatNumber(String num) {
@@ -195,9 +254,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		graphView_0.setScalable(true);
 		graphView_0.setShowLegend(true);
 		graphView_0.setLegendAlign(LegendAlign.BOTTOM);
-		graphView_0.setManualYAxis(true);
+		//graphView_0.setManualYAxis(true);
 		//graphView_0.setManualYAxisBounds(10000, 0);
-		graphView_0.setManualYAxisBounds(MAX_Y_Grap_0, MIN_Y_Grap_0);
+		//graphView_0.setManualYAxisBounds(MAX_Y_Grap_0, MIN_Y_Grap_0);
 		graphView_0.addSeries(Series_0); // data
 		GraphView_0.addView(graphView_0);
 
@@ -218,8 +277,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		graphView_1.setScalable(true);
 		graphView_1.setShowLegend(true);
 		graphView_1.setLegendAlign(LegendAlign.BOTTOM);
-		graphView_1.setManualYAxis(true);
-		graphView_1.setManualYAxisBounds(MAX_Y_Grap_1, MIN_Y_Grap_1);
+		//graphView_1.setManualYAxis(true);
+		//graphView_1.setManualYAxisBounds(MAX_Y_Grap_1, MIN_Y_Grap_1);
 		graphView_1.addSeries(Series_1); // data
 		GraphView_1.addView(graphView_1);
 	}
@@ -244,38 +303,40 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		//Record Button
 		tbRecord = (ToggleButton)findViewById(R.id.tbRecord);
 		tbRecord.setOnClickListener(new OnClickListener() {
-		String m_chosen;
-		@Override
-		public void onClick(View v) {
+			String m_chosen;
 
-			if (tbRecord.isChecked()){
-				Record = true;
-				/////////////////////////////////////////////////////////////////////////////////////////////////
-				//Create FileOpenDialog and register a callback
-				/////////////////////////////////////////////////////////////////////////////////////////////////
-				FileSaveDialog =  new SimpleFileDialog(MainActivity.this, "FileSave",
-						new SimpleFileDialog.SimpleFileDialogListener()
-						{
-							@Override
-							public void onChosenDir(String chosenDir)
-							{
-								// The code in this function will be executed when the Record button is pushed
-								m_chosen = chosenDir;
-								Toast.makeText(MainActivity.this, "Chosen FileOpenDialog File: " +
-										m_chosen, Toast.LENGTH_LONG).show();
-							}
-						});
+			@Override
+			public void onClick(View v) {
 
-				//You can change the default filename using the public variable "Default_File_Name"
-				FileSaveDialog.Default_File_Name = "Datos.txt";
-				FileSaveDialog.chooseFile_or_Dir();
+				if (tbRecord.isChecked()) {
+						Record_Dialog_On = true;
+						Record = true;
+						/////////////////////////////////////////////////////////////////////////////////////////////////
+						//Create FileOpenDialog and register a callback
+						/////////////////////////////////////////////////////////////////////////////////////////////////
+						FileSaveDialog = new SimpleFileDialog(MainActivity.this, "FileSave",
+								new SimpleFileDialog.SimpleFileDialogListener() {
+									@Override
+									public void onChosenDir(String chosenDir) {
+										// The code in this function will be executed when the Record button is pushed
+										m_chosen = chosenDir;
+										Toast.makeText(MainActivity.this, "Chosen FileOpenDialog File: " +
+												m_chosen, Toast.LENGTH_LONG).show();
+										Record_Dialog_On = false;
+									}
+								});
 
-				/////////////////////////////////////////////////////////////////////////////////////////////////
-			} else{
-				Record = false;
+						//You can change the default filename using the public variable "Default_File_Name"
+						FileSaveDialog.Default_File_Name = "Datos.txt";
+						FileSaveDialog.chooseFile_or_Dir();
+
+						/////////////////////////////////////////////////////////////////////////////////////////////////
+					} else {
+						Record = false;
+					}
+
 			}
-		}
-	});
+		});
 
 
 		//init toggleButton
@@ -299,7 +360,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			if (Xview>1) Xview--;
 			break;
 		case R.id.bXplus:
-			if (Xview<30) Xview++;
+			if (Xview<100) Xview++;
 			break;
 		case R.id.tbLock:
 			if (tbLock.isChecked()){
@@ -318,12 +379,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		case R.id.tbStream:
 			if (tbStream.isChecked()){
 				if (Bluetooth.connectedThread != null)
-					Bluetooth.connectedThread.write("E");
+					Bluetooth.connectedThread.write(Character.toString((char)5));
 			}else{
 				if (Bluetooth.connectedThread != null)
-					Bluetooth.connectedThread.write("Q");
+					Bluetooth.connectedThread.write("0");
 			}
 			break;
+		/*
 		case R.id.tbRecord:
 			if (tbRecord.isChecked()){
 				Record = true;
@@ -332,6 +394,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 				Record = false;
 			}
 			break;
+	*/
 		}
 	}
 

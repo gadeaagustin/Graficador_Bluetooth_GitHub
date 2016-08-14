@@ -16,11 +16,11 @@
         <dex dex="C:\Users\Lucas\AndroidStudioProjects\Tut1\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-ec0da9a37064a7064a2a30036c33d5051a60d99c.jar" />
     </item>
     <item
-        jar="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\libs\GraphView-3.0.jar"
+        jar="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\libs\GraphView-3.0.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="e187192858ff7a5ff7864d6f6a754427e6cb3a87">
-        <dex dex="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth\app\build\intermediates\pre-dexed\debug\GraphView-3.0-418f1b73fc90d69e7dd31acbd369581202677197.jar" />
+        <dex dex="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\build\intermediates\pre-dexed\debug\GraphView-3.0-8fd7abf31fa8026bbb32144db414b997175d0c34.jar" />
     </item>
 
 </items>

@@ -1,15 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tut1"
+    package="com.gibio.bt_graph"
     android:versionCode="1"
     android:versionName="1.0" >
 
         <uses-sdk
-            android:minSdkVersion="8"
-            android:targetSdkVersion="15" />
+            android:minSdkVersion="14"
+            android:targetSdkVersion="22" />
 
         <uses-permission android:name="android.permission.BLUETOOTH" />
         <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
         <application

@@ -40,10 +40,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	static boolean Record_Dialog_On;
 	//static String DataWrite = new String("");
 	static byte[] DataWrite = new byte[1024 * 1000];
+	static int[] DataToWrite = new int[1024 * 1000];
 	static int j = 0;
 
 
-	public static final int MIN_Y_Grap_0 = -8000000, MIN_Y_Grap_1 = -8000000, MAX_Y_Grap_0 = 8000000, MAX_Y_Grap_1 = 8000000;
+	public static final int MIN_Y_Grap_0 = -3000000, MIN_Y_Grap_1 = -3000000, MAX_Y_Grap_0 = 3000000, MAX_Y_Grap_1 = 3000000;
 	SimpleFileDialog FileSaveDialog;
 
 	@Override
@@ -93,19 +94,27 @@ public class MainActivity extends Activity implements View.OnClickListener {
 				case Bluetooth.MESSAGE_READ:
 					if (!Record_Dialog_On) {
 						byte[] readBuf = (byte[]) msg.obj;
-						for (int i = 0; i < (readBuf.length - 4); i++) {  //[LL]: Barrido el buffer de 1024 bytes
+						for (int i = 0; i < (Bluetooth.bytes - 3); i++) {  //[LL]: Barrido del buffer de 1024 bytes
 							int data_aux[] = new int[]{(int) readBuf[i] & 0xff, (int) readBuf[i + 1] & 0xff, (int) readBuf[i + 2] & 0xff, (int) readBuf[i + 3] & 0xff};
-							if ((data_aux[0] & 0x80) == 0x80 && (data_aux[1] & 0x80) == 0 && (data_aux[2] & 0x80) == 0 && (data_aux[3] & 0x80) == 0) {
+							if ((data_aux[0] & 0x80) == 0x80 && (data_aux[1] & 0x80) == 0 && (data_aux[2] & 0x80) == 0 && (data_aux[3] & 0x80) == 0)
+							{
 								//if(Record==true && (DataWrite.length()) < (1024 * 100)) {
 								if (Record == true && j < (1024 * 1000 - 4)) {
 									recording = true;
-									/*String DataWrite_aux = "";
+									String DataWrite_aux = "";
 									try {
 										DataWrite_aux = new String(readBuf, i, 4, "ISO-8859-1"); //"ISO-8859-1" encoding para que tome correctamente los extended asci
 									} catch (UnsupportedEncodingException e) {
 										e.printStackTrace();
 									}
+
+									/* //A cambiar para grabar los datos como enteros
+									double data = ProcessData(data_aux); //Obtengo el valor a graficar segun el formato de los datos
+									int channel = (data_aux[0] & 0x38) >> 3; //Obtengo el canal a graficar. Mascara= 0x38= 111000b
+									i = i + 3;
+									DataToWrite[j] = (int) data;
 									*/
+									 //Para guardar con el formato del protocolo del Fisio
 									//DataWrite = DataWrite.concat(DataWrite_aux);
 									DataWrite[j] = (byte) (data_aux[0] & 0xff);
 									DataWrite[j + 1] = (byte) (data_aux[1] & 0xff);
@@ -117,6 +126,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 								} else if (recording == true) {
 									Log.d("com.gibio.bt_graph", "grabando...");
+									 //Para guardar con el formato del protocolo del Fisio
 									DataWrite[j] = (byte) (data_aux[0] & 0xff);
 									DataWrite[j + 1] = (byte) (data_aux[1] & 0xff);
 									DataWrite[j + 2] = (byte) (data_aux[2] & 0xff);
@@ -127,6 +137,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 									} catch (UnsupportedEncodingException e) {
 										e.printStackTrace();
 									}
+
+									/* //A cambiar para grabar los datos como enteros
+									DataToWrite[j] = (int) data;
+									try {
+										DataWrite_aux = new String(DataWrite, 0, j + 3, "ISO-8859-1"); //"ISO-8859-1" encoding para que tome correctamente los extended asci
+									} catch (UnsupportedEncodingException e) {
+										e.printStackTrace();
+									}*/
 
 									String DirToSaveType;
 									if (FileSaveDialog.Get_m_dir().equals("") == false)
@@ -156,13 +174,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 								switch (channel) {
 									case 0:
-										if (Sereies_0_index < 1000) { //[LL]:Esto lo puse para evitar picos en la memoria RAM
-											Series_0.appendData(new GraphViewData(graph2LastXValue_0, data), AutoScrollX);
-											Sereies_0_index++;
-										} else {
-											Series_0.resetData(new GraphViewData[]{});
-											Sereies_0_index = 0;
-										}
+									//	if (Sereies_0_index < 1000){ //[LL]:Esto lo puse para evitar picos en la memoria R
+											if(data!=-2097152.0 && data!=0.0 && data!=409600.0 && data!=393216.0) { //[LL]:Por un error (picos) ver como resolver
+												//Notar que todos los valores que dan error son multiplos de 1024
+												//393216=    0x060000 = 0000 0110 00000000 00000000
+												//409600=    0x064000 = 0000 0110 01000000 00000000
+												//con el protocolo: 10001000 00110010 00000000 00000000
+
+												// -2097152= 0xE00000 = 1110 0000 00000000 00000000
+												Series_0.appendData(new GraphViewData(graph2LastXValue_0, data), AutoScrollX);
+												Sereies_0_index++;
+											}
+										//} else {
+										//	Series_0.resetData(new GraphViewData[]{});
+										//	Sereies_0_index = 0;
+										//}
 										//X-axis control
 										if (graph2LastXValue_0 >= Xview && Lock == true) {
 											Series_0.resetData(new GraphViewData[]{});
@@ -180,9 +206,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 										break;
 
 									case 1:
-										if (Sereies_1_index < 1000) {
-											Series_1.appendData(new GraphViewData(graph2LastXValue_1, data), AutoScrollX);
-											Sereies_1_index++;
+										if (Sereies_1_index < 1000){
+											if(data!=-2097152.0 && data!=0.0 && data!=409600.0 && data!=393216.0 ) {
+												Series_1.appendData(new GraphViewData(graph2LastXValue_1, data), AutoScrollX);
+												//Log.d("com.gibio.bt_graph", "data:" + Double.toString(data));
+												Sereies_1_index++;
+											}
 										} else {
 											Series_1.resetData(new GraphViewData[]{});
 											Sereies_1_index = 0;

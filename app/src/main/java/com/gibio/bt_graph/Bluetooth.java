@@ -29,6 +29,11 @@ import android.widget.Toast;
 //import android.bluetooth.le.BluetoothLeScaner
 public class Bluetooth extends Activity implements OnItemClickListener{
 
+	public static int bytes=0; //[LL]
+	static int idx_end=0; //[LL]
+	static byte[] buffer_copy= new byte[1024];
+	static boolean complete_data= true;
+
 	public static void disconnect(){
 		if (connectedThread != null) {
 			connectedThread.cancel(); 
@@ -245,7 +250,7 @@ public class Bluetooth extends Activity implements OnItemClickListener{
 		public void run() {
 
 			byte[] buffer;  // buffer store for the stream
-			int bytes; // bytes returned from read()
+			//int bytes; // bytes returned from read()
 
 			// Keep listening to the InputStream until an exception occurs
 			while (true) {
@@ -258,10 +263,32 @@ public class Bluetooth extends Activity implements OnItemClickListener{
 					}
 
 					buffer = new byte[1024];
+
 					// Read from the InputStream
 					bytes = mmInStream.read(buffer);
-					// Send the obtained bytes to the UI activity
-					mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer).sendToTarget();
+					if(bytes>3 && complete_data == true) { //[LL]: Para cuando los datos llegan cortados
+						// Send the obtained bytes to the UI activity
+						mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer).sendToTarget();
+					}
+/*
+					else {
+						complete_data = false;
+						for (int i = idx_end; i < (idx_end + bytes); i++) {
+							buffer_copy[i] = buffer[i];
+						}
+						idx_end= idx_end + bytes;
+						if(idx_end > 3){
+							for (int i = 0; i < (idx_end%4) ; i++) {
+								buffer_copy[i]= buffer_copy[idx_end - (idx_end%4) +i];
+							}
+							bytes= idx_end - (idx_end%4);
+							idx_end= idx_end%4;
+							complete_data =true;
+							mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer_copy).sendToTarget();
+						}
+								}
+					*/
+
 				} catch (IOException e) {
 					break;
 				}

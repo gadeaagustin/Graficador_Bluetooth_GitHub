@@ -256,7 +256,7 @@ public class Bluetooth extends Activity implements OnItemClickListener{
 			while (true) {
 				try {
 					try {
-						sleep(30);
+						sleep(30);//sleep(30);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -266,28 +266,8 @@ public class Bluetooth extends Activity implements OnItemClickListener{
 
 					// Read from the InputStream
 					bytes = mmInStream.read(buffer);
-					if(bytes>3 && complete_data == true) { //[LL]: Para cuando los datos llegan cortados
 						// Send the obtained bytes to the UI activity
 						mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer).sendToTarget();
-					}
-/*
-					else {
-						complete_data = false;
-						for (int i = idx_end; i < (idx_end + bytes); i++) {
-							buffer_copy[i] = buffer[i];
-						}
-						idx_end= idx_end + bytes;
-						if(idx_end > 3){
-							for (int i = 0; i < (idx_end%4) ; i++) {
-								buffer_copy[i]= buffer_copy[idx_end - (idx_end%4) +i];
-							}
-							bytes= idx_end - (idx_end%4);
-							idx_end= idx_end%4;
-							complete_data =true;
-							mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer_copy).sendToTarget();
-						}
-								}
-					*/
 
 				} catch (IOException e) {
 					break;

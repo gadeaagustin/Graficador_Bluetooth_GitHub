@@ -31,17 +31,20 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
-//TODO: [LL]: Probar la opcion de recording y dejarla funcionando ok
+/*TODO: [LL]: Probar el funcionamiento con el fisio; Ver si se corrigio el issue picos; Grabación para matlab
+*/
 
 public class MainActivity extends Activity implements View.OnClickListener {
 	static int Sereies_0_index = 0, Sereies_1_index = 0;
 	static boolean Record_Dialog_On;
-	//static String DataWrite = new String("");
-	static byte[] DataWrite = new byte[1024 * 1000];
-	static int[] DataToWrite = new int[1024 * 1000];
+	static String DataWrite = new String("");
+	//static byte[] DataWrite = new byte[1024 * 1000];
+	//static int[] DataToWrite = new int[1024 * 1000];
 	static int j = 0;
+	static int data_aux[]= new int[4];
+	static int cont=0, canal_ant=-1;
+	static double data_channel_0_prev=0, data_channel_1_prev=0;
 
 
 	public static final int MIN_Y_Grap_0 = -3000000, MIN_Y_Grap_1 = -3000000, MAX_Y_Grap_0 = 3000000, MAX_Y_Grap_1 = 3000000;
@@ -83,112 +86,103 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		@Override
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
+			int channel;
+			double data;
 			super.handleMessage(msg);
 			switch (msg.what) {
 				case Bluetooth.SUCCESS_CONNECT:
 					Bluetooth.connectedThread = new Bluetooth.ConnectedThread((BluetoothSocket) msg.obj);
-					Toast.makeText(getApplicationContext(), "Connected!", 0).show();
+					Toast.makeText(getApplicationContext(), "Conectado!", 0).show();
 					String s = "successfully connected";
 					Bluetooth.connectedThread.start();
 					break;
 				case Bluetooth.MESSAGE_READ:
 					if (!Record_Dialog_On) {
 						byte[] readBuf = (byte[]) msg.obj;
-						for (int i = 0; i < (Bluetooth.bytes - 3); i++) {  //[LL]: Barrido del buffer de 1024 bytes
-							int data_aux[] = new int[]{(int) readBuf[i] & 0xff, (int) readBuf[i + 1] & 0xff, (int) readBuf[i + 2] & 0xff, (int) readBuf[i + 3] & 0xff};
-							if ((data_aux[0] & 0x80) == 0x80 && (data_aux[1] & 0x80) == 0 && (data_aux[2] & 0x80) == 0 && (data_aux[3] & 0x80) == 0)
-							{
-								//if(Record==true && (DataWrite.length()) < (1024 * 100)) {
-								if (Record == true && j < (1024 * 1000 - 4)) {
+						for (int i = 0; i < readBuf.length + cont ; i++) {  //[LL]: Barrido del buffer de 1024 byte
+						//	Log.d("Cont.", Integer.toString(cont));
+							if (cont==3) {
+								data_aux[3]= (int) readBuf[i]  & 0xff;
+								cont=0;
+
+							if ((data_aux[0] & 0x80) == 0x80 && (data_aux[1] & 0x80) == 0 && (data_aux[2] & 0x80) == 0 && (data_aux[3] & 0x80) == 0) {
+								data = ProcessData(data_aux); //Obtengo el valor a graficar segun el formato de los datos
+								channel = (data_aux[0] & 0x38) >> 3; //Obtengo el canal a graficar. Mascara= 0x38= 111000b
+								//i = i + 3;
+								if (Record == true && j < (1024 - 4)) {
 									recording = true;
-									String DataWrite_aux = "";
-									try {
-										DataWrite_aux = new String(readBuf, i, 4, "ISO-8859-1"); //"ISO-8859-1" encoding para que tome correctamente los extended asci
-									} catch (UnsupportedEncodingException e) {
-										e.printStackTrace();
+									if(canal_ant==-1)
+									{
+										if(channel==0)
+											canal_ant= 1;
+										else if(canal_ant==1)
+											canal_ant= 0;
+									}
+									switch(canal_ant) {
+										case 0:
+											if(channel==1) {
+												DataWrite = DataWrite.concat(Double.toString(data) + "\n");
+												canal_ant=1;
+												data_channel_1_prev= data;
+											}
+											else if(channel==0) {
+												DataWrite = DataWrite.concat(Double.toString(data_channel_1_prev) + "\n" + data + ",");
+												data_channel_0_prev = data;
+											}
+											break;
+										case 1:
+											if(channel==0) {
+												DataWrite = DataWrite.concat(Double.toString(data) + ",");
+												canal_ant = 0;
+												DataWrite = DataWrite.concat(Double.toString(data_channel_1_prev) + "\n" + data + ",");
+												data_channel_0_prev = data;
+											}
+											else if(channel==1) {
+												DataWrite = DataWrite.concat(Double.toString(data_channel_0_prev) + "," + data + "\n");
+												DataWrite = DataWrite.concat(Double.toString(data_channel_1_prev) + "\n" + data + ",");
+												data_channel_1_prev = data;
+											}
+											break;
+										default:
+											break;
 									}
 
-									/* //A cambiar para grabar los datos como enteros
-									double data = ProcessData(data_aux); //Obtengo el valor a graficar segun el formato de los datos
-									int channel = (data_aux[0] & 0x38) >> 3; //Obtengo el canal a graficar. Mascara= 0x38= 111000b
-									i = i + 3;
-									DataToWrite[j] = (int) data;
-									*/
-									 //Para guardar con el formato del protocolo del Fisio
-									//DataWrite = DataWrite.concat(DataWrite_aux);
-									DataWrite[j] = (byte) (data_aux[0] & 0xff);
-									DataWrite[j + 1] = (byte) (data_aux[1] & 0xff);
-									DataWrite[j + 2] = (byte) (data_aux[2] & 0xff);
-									DataWrite[j + 3] = (byte) (data_aux[3] & 0xff);
-									j += 4;
-									//if(j == DataWrite.length -4)
-									//	j=0;
+									j++;
 
 								} else if (recording == true) {
 									Log.d("com.gibio.bt_graph", "grabando...");
-									 //Para guardar con el formato del protocolo del Fisio
-									DataWrite[j] = (byte) (data_aux[0] & 0xff);
-									DataWrite[j + 1] = (byte) (data_aux[1] & 0xff);
-									DataWrite[j + 2] = (byte) (data_aux[2] & 0xff);
-									DataWrite[j + 3] = (byte) (data_aux[3] & 0xff);
-									String DataWrite_aux = "";
-									try {
-										DataWrite_aux = new String(DataWrite, 0, j + 3, "ISO-8859-1"); //"ISO-8859-1" encoding para que tome correctamente los extended asci
-									} catch (UnsupportedEncodingException e) {
-										e.printStackTrace();
-									}
-
-									/* //A cambiar para grabar los datos como enteros
-									DataToWrite[j] = (int) data;
-									try {
-										DataWrite_aux = new String(DataWrite, 0, j + 3, "ISO-8859-1"); //"ISO-8859-1" encoding para que tome correctamente los extended asci
-									} catch (UnsupportedEncodingException e) {
-										e.printStackTrace();
-									}*/
-
 									String DirToSaveType;
 									if (FileSaveDialog.Get_m_dir().equals("") == false)
-										DirToSaveType = FileSaveDialog.Get_m_dir();
+										 DirToSaveType = FileSaveDialog.Get_m_dir();
 									else DirToSaveType = FileSaveDialog.Get_m_sdcardDirectory();
-									SaveData(DataWrite_aux, DirToSaveType, FileSaveDialog.Get_Selected_File_Name()); //Guardo los datos en un archivo
+									SaveData(DataWrite, DirToSaveType, FileSaveDialog.Get_Selected_File_Name()); //Guardo los datos en un archivo
+									DataWrite= (String)"";
+									canal_ant=-1; // -1 == ningún canal
 									if (Record == false) {    //[LL]: si se presionó STOP dejo de grabar
 										recording = false;
 										Toast.makeText(getApplicationContext(), "Grabación detenida!", 0).show();
 									}
 									j = 0;
 								}
-								/*
-								if (Record == true) {
-									String DirToSaveType;
-									if (FileSaveDialog.Get_m_dir().equals("") == false)
-										DirToSaveType = FileSaveDialog.Get_m_dir();
-									else DirToSaveType = FileSaveDialog.Get_m_sdcardDirectory();
-									SaveData(DataWrite, DirToSaveType, FileSaveDialog.Get_Selected_File_Name()); //Guardo los datos en un archivo
-								}
-								*/
-								double data = ProcessData(data_aux); //Obtengo el valor a graficar segun el formato de los datos
-								int channel = (data_aux[0] & 0x38) >> 3; //Obtengo el canal a graficar. Mascara= 0x38= 111000b
-								i = i + 3;
 
-								//SaveData(Double.toString(data) ,"Datos.txt"); //Guardo los datos en un archivo
 
 								switch (channel) {
 									case 0:
-									//	if (Sereies_0_index < 1000){ //[LL]:Esto lo puse para evitar picos en la memoria R
-											if(data!=-2097152.0 && data!=0.0 && data!=409600.0 && data!=393216.0) { //[LL]:Por un error (picos) ver como resolver
-												//Notar que todos los valores que dan error son multiplos de 1024
-												//393216=    0x060000 = 0000 0110 00000000 00000000
-												//409600=    0x064000 = 0000 0110 01000000 00000000
-												//con el protocolo: 10001000 00110010 00000000 00000000
+										//	if (Sereies_0_index < 1000){ //[LL]:Esto lo puse para evitar picos en la memoria R
+										//	if(data!=-2097152.0 && data!=0.0 && data!=409600.0 && data!=393216.0) { //[LL]:Por un error (picos) ver como resolver
+										//Notar que todos los valores que dan error son multiplos de 1024
+										//393216=    0x060000 = 0000 0110 00000000 00000000
+										//409600=    0x064000 = 0000 0110 01000000 00000000
+										//con el protocolo: 10001000 00110010 00000000 00000000
 
-												// -2097152= 0xE00000 = 1110 0000 00000000 00000000
-												Series_0.appendData(new GraphViewData(graph2LastXValue_0, data), AutoScrollX);
-												Sereies_0_index++;
-											}
-										//} else {
-										//	Series_0.resetData(new GraphViewData[]{});
-										//	Sereies_0_index = 0;
-										//}
+										// -2097152= 0xE00000 = 1110 0000 00000000 00000000
+										Series_0.appendData(new GraphViewData(graph2LastXValue_0, data), AutoScrollX);
+										Sereies_0_index++;
+										//		}
+								//		} else {
+								//			Series_0.resetData(new GraphViewData[]{});
+								//			Sereies_0_index = 0;
+								//		}
 										//X-axis control
 										if (graph2LastXValue_0 >= Xview && Lock == true) {
 											Series_0.resetData(new GraphViewData[]{});
@@ -206,16 +200,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
 										break;
 
 									case 1:
-										if (Sereies_1_index < 1000){
-											if(data!=-2097152.0 && data!=0.0 && data!=409600.0 && data!=393216.0 ) {
-												Series_1.appendData(new GraphViewData(graph2LastXValue_1, data), AutoScrollX);
-												//Log.d("com.gibio.bt_graph", "data:" + Double.toString(data));
-												Sereies_1_index++;
-											}
-										} else {
-											Series_1.resetData(new GraphViewData[]{});
-											Sereies_1_index = 0;
-										}
+								//		if (Sereies_1_index < 1000) {
+											//	if(data!=-2097152.0 && data!=0.0 && data!=409600.0 && data!=393216.0 ) {
+											Series_1.appendData(new GraphViewData(graph2LastXValue_1, data), AutoScrollX);
+											//Log.d("com.gibio.bt_graph", "data:" + Double.toString(data));
+											Sereies_1_index++;
+											//		}
+								//		} else {
+								//			Series_1.resetData(new GraphViewData[]{});
+								//			Sereies_1_index = 0;
+								//		}
 										//X-axis control
 										if (graph2LastXValue_1 >= Xview && Lock == true) {
 											Series_1.resetData(new GraphViewData[]{});
@@ -232,6 +226,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 										GraphView_1.addView(graphView_1);
 										break;
 								}
+							}
+						}
+						else {
+								data_aux[cont] = (int) readBuf[i] & 0xff;
+								cont++;
 							}
 						}
 					}
@@ -265,6 +264,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		//set background color
 		LinearLayout background = (LinearLayout) findViewById(R.id.bg);
 		background.setBackgroundColor(Color.BLACK);
+		//background.setBackgroundColor(Color.WHITE);
 		init();
 		ButtonInit();
 	}
@@ -290,6 +290,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		//graphView_0.setManualYAxis(true);
 		//graphView_0.setManualYAxisBounds(10000, 0);
 		//graphView_0.setManualYAxisBounds(MAX_Y_Grap_0, MIN_Y_Grap_0);
+		graphView_0.setBackgroundColor(Color.argb(180, 255,255, 255));
 		graphView_0.addSeries(Series_0); // data
 		GraphView_0.addView(graphView_0);
 
@@ -312,8 +313,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		graphView_1.setLegendAlign(LegendAlign.BOTTOM);
 		//graphView_1.setManualYAxis(true);
 		//graphView_1.setManualYAxisBounds(MAX_Y_Grap_1, MIN_Y_Grap_1);
+		graphView_1.setBackgroundColor(Color.argb(180, 255,255, 255));
 		graphView_1.addSeries(Series_1); // data
 		GraphView_1.addView(graphView_1);
+
 	}
 
 	void ButtonInit() {

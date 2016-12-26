@@ -32,8 +32,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/*TODO: [LL]: Probar el funcionamiento con el fisio; Ver si se corrigio el issue picos; Grabación para matlab
-*/
+/*TODO: [LL]: Probar el funcionamiento con el fisio; Verificar funcionamiento de la grabación  en formato CSV */
 
 public class MainActivity extends Activity implements View.OnClickListener {
 	static int Sereies_0_index = 0, Sereies_1_index = 0;
@@ -115,8 +114,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 									{
 										if(channel==0)
 											canal_ant= 1;
-										else if(canal_ant==1)
-											canal_ant= 0;
+										else if(channel==1) {
+											canal_ant = 0;
+											DataWrite = DataWrite.concat(Double.toString(data_channel_0_prev) + ",");
+										}
 									}
 									switch(canal_ant) {
 										case 0:
@@ -134,12 +135,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 											if(channel==0) {
 												DataWrite = DataWrite.concat(Double.toString(data) + ",");
 												canal_ant = 0;
-												DataWrite = DataWrite.concat(Double.toString(data_channel_1_prev) + "\n" + data + ",");
+												//DataWrite = DataWrite.concat(Double.toString(data_channel_1_prev) + "\n" + data + ",");
 												data_channel_0_prev = data;
 											}
 											else if(channel==1) {
 												DataWrite = DataWrite.concat(Double.toString(data_channel_0_prev) + "," + data + "\n");
-												DataWrite = DataWrite.concat(Double.toString(data_channel_1_prev) + "\n" + data + ",");
+												//DataWrite = DataWrite.concat(Double.toString(data_channel_1_prev) + "\n" + data + ",");
 												data_channel_1_prev = data;
 											}
 											break;
@@ -153,36 +154,37 @@ public class MainActivity extends Activity implements View.OnClickListener {
 									Log.d("com.gibio.bt_graph", "grabando...");
 									String DirToSaveType;
 									if (FileSaveDialog.Get_m_dir().equals("") == false)
-										 DirToSaveType = FileSaveDialog.Get_m_dir();
+										DirToSaveType = FileSaveDialog.Get_m_dir();
 									else DirToSaveType = FileSaveDialog.Get_m_sdcardDirectory();
 									SaveData(DataWrite, DirToSaveType, FileSaveDialog.Get_Selected_File_Name()); //Guardo los datos en un archivo
-									DataWrite= (String)"";
-									canal_ant=-1; // -1 == ningún canal
+									DataWrite = (String) "";
+									//canal_ant = -1; // -1 == ningún canal
+
 									if (Record == false) {    //[LL]: si se presionó STOP dejo de grabar
 										recording = false;
-										Toast.makeText(getApplicationContext(), "Grabación detenida!", 0).show();
+										Toast.makeText(getApplicationContext(), "Grabación detenida!", 0).show();j = 0;
 									}
 									j = 0;
 								}
 
-
 								switch (channel) {
 									case 0:
-										//	if (Sereies_0_index < 1000){ //[LL]:Esto lo puse para evitar picos en la memoria R
-										//	if(data!=-2097152.0 && data!=0.0 && data!=409600.0 && data!=393216.0) { //[LL]:Por un error (picos) ver como resolver
+										if (Sereies_0_index < 10000){ //[LL]:Esto lo puse para evitar picos en la memoria
+											if(data!=-2097152.0 && data!=0.0 && data!=409600.0 && data!=393216.0) { //[LL]:Por un error (picos) ver como resolver
 										//Notar que todos los valores que dan error son multiplos de 1024
 										//393216=    0x060000 = 0000 0110 00000000 00000000
 										//409600=    0x064000 = 0000 0110 01000000 00000000
 										//con el protocolo: 10001000 00110010 00000000 00000000
 
 										// -2097152= 0xE00000 = 1110 0000 00000000 00000000
+
 										Series_0.appendData(new GraphViewData(graph2LastXValue_0, data), AutoScrollX);
 										Sereies_0_index++;
-										//		}
-								//		} else {
-								//			Series_0.resetData(new GraphViewData[]{});
-								//			Sereies_0_index = 0;
-								//		}
+												}
+										} else {
+											Series_0.resetData(new GraphViewData[]{});
+											Sereies_0_index = 0;
+										}
 										//X-axis control
 										if (graph2LastXValue_0 >= Xview && Lock == true) {
 											Series_0.resetData(new GraphViewData[]{});
@@ -200,16 +202,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
 										break;
 
 									case 1:
-								//		if (Sereies_1_index < 1000) {
-											//	if(data!=-2097152.0 && data!=0.0 && data!=409600.0 && data!=393216.0 ) {
+										if (Sereies_1_index < 10000) {
+										if(data!=-2097152.0 && data!=0.0 && data!=409600.0 && data!=393216.0 ) {
+										//if(data!=-2097152.0 ) {
 											Series_1.appendData(new GraphViewData(graph2LastXValue_1, data), AutoScrollX);
 											//Log.d("com.gibio.bt_graph", "data:" + Double.toString(data));
 											Sereies_1_index++;
-											//		}
-								//		} else {
-								//			Series_1.resetData(new GraphViewData[]{});
-								//			Sereies_1_index = 0;
-								//		}
+													}
+										} else {
+											Series_1.resetData(new GraphViewData[]{});
+											Sereies_1_index = 0;
+										}
 										//X-axis control
 										if (graph2LastXValue_1 >= Xview && Lock == true) {
 											Series_1.resetData(new GraphViewData[]{});

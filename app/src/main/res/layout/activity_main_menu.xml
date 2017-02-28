@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="horizontal"
+    android:weightSum="100" >
+
+    <LinearLayout
+        android:id="@+id/Menu"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="15"
+        android:background="@color/white" >
+        android:weightSum="10">
+
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_launcher" />
+        <!--
+                <TextView
+                    android:id="@+id/tvGIBIO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="GIBIO"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"/>
+        -->
+        <Button
+            android:id="@+id/bANAMNESIS"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:text="ANAMNESIS"
+            android:textSize="10dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/bEEG"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:text="EEG/EOG"
+            android:textSize="10dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/bEEG"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:text="ECG"
+            android:textSize="10dp"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/bTONOMETRIA"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:text="TONOMETRIA"
+            android:textSize="10dp"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/bPRESION_ARTERIAL"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:text="PRESION ARTERIAL"
+            android:textSize="10dp"
+            android:textColor="@color/black"/>
+
+
+        <Button
+            android:id="@+id/bRUIDOS_CARDIACOS"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:text="RUIDOS CARDIACOS"
+            android:textSize="10dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/bSPO2"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:text="SPO2"
+            android:textSize="10dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/bMEDICION_MULTIPARAMETRICA"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:text="MEDICION MULTIPARAMETRICA"
+            android:textSize="10dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+</LinearLayout>

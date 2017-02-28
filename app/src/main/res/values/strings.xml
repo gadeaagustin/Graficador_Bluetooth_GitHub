@@ -4,5 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">BT_Graph</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_activity_eeg__instructions">EEG_InstructionsActivity</string>
 
 </resources>

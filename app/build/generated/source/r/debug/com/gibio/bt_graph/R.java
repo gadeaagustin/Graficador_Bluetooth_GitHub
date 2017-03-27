@@ -8,15 +8,26 @@
 package com.gibio.bt_graph;
 
 public final class R {
+    public static final class array {
+        public static final int array_Argentina=0x7f060000;
+        public static final int array_Brasil=0x7f060001;
+        public static final int array_Paises=0x7f060002;
+        public static final int array_Paraguay=0x7f060003;
+        public static final int array_Uruguay=0x7f060004;
+    }
     public static final class attr {
     }
     public static final class color {
-        public static final int black=0x7f050000;
-        public static final int cyan3=0x7f050001;
-        public static final int green=0x7f050002;
-        public static final int orange=0x7f050003;
-        public static final int red=0x7f050004;
-        public static final int white=0x7f050005;
+        public static final int black=0x7f070000;
+        public static final int cyan3=0x7f070001;
+        public static final int green=0x7f070002;
+        public static final int orange=0x7f070003;
+        public static final int red=0x7f070004;
+        public static final int white=0x7f070005;
+    }
+    public static final class dimen {
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
         public static final int ic_action_search=0x7f020000;
@@ -24,41 +35,129 @@ public final class R {
         public static final int ic_launcher_old=0x7f020002;
     }
     public static final class id {
-        public static final int Graph=0x7f080004;
-        public static final int Graph_0=0x7f080005;
-        public static final int Graph_1=0x7f080006;
-        public static final int LL2=0x7f080007;
-        public static final int LLX=0x7f080010;
-        public static final int bConnect=0x7f080009;
-        public static final int bConnectNew=0x7f080002;
-        public static final int bDisconnect=0x7f08000a;
-        public static final int bXminus=0x7f080011;
-        public static final int bXplus=0x7f080012;
-        public static final int bg=0x7f080003;
-        public static final int imageView1=0x7f080008;
-        public static final int listView=0x7f080001;
-        public static final int menu_settings=0x7f080013;
-        public static final int tbLock=0x7f08000f;
-        public static final int tbRecord=0x7f08000b;
-        public static final int tbScroll=0x7f08000e;
-        public static final int tbStream=0x7f08000d;
-        public static final int tvControl=0x7f08000c;
-        public static final int tvPd=0x7f080000;
+        public static final int Anamnesis=0x7f0a0047;
+        public static final int Graph=0x7f0a004b;
+        public static final int Graph_0=0x7f0a004c;
+        public static final int Graph_1=0x7f0a004d;
+        public static final int LL2=0x7f0a004e;
+        public static final int LLX=0x7f0a0057;
+        public static final int Menu=0x7f0a005a;
+        public static final int PreSis=0x7f0a002e;
+        public static final int ScrollView01=0x7f0a0000;
+        public static final int bANAMNESIS=0x7f0a005b;
+        public static final int bCARGAR=0x7f0a004a;
+        public static final int bConnect=0x7f0a0050;
+        public static final int bConnectNew=0x7f0a0043;
+        public static final int bDisconnect=0x7f0a0051;
+        public static final int bEEG=0x7f0a005c;
+        public static final int bENVIAR=0x7f0a0040;
+        public static final int bMEDICION_MULTIPARAMETRICA=0x7f0a0061;
+        public static final int bNUEVO=0x7f0a0049;
+        public static final int bPRESION_ARTERIAL=0x7f0a005e;
+        public static final int bRUIDOS_CARDIACOS=0x7f0a005f;
+        public static final int bSIGUIENTE=0x7f0a0046;
+        public static final int bSPO2=0x7f0a0060;
+        public static final int bTONOMETRIA=0x7f0a005d;
+        public static final int bXminus=0x7f0a0058;
+        public static final int bXplus=0x7f0a0059;
+        public static final int bg=0x7f0a0044;
+        public static final int btHombre=0x7f0a0008;
+        public static final int btMujer=0x7f0a0009;
+        public static final int chkAsma=0x7f0a0019;
+        public static final int chkBebidasAlcoholicas=0x7f0a0011;
+        public static final int chkDbt=0x7f0a001c;
+        public static final int chkDbtFam=0x7f0a0021;
+        public static final int chkExpectoracion=0x7f0a0017;
+        public static final int chkHemoptisis=0x7f0a0018;
+        public static final int chkHta=0x7f0a001d;
+        public static final int chkHtaFam=0x7f0a0022;
+        public static final int chkNeumonía=0x7f0a001a;
+        public static final int chkTabaquismo=0x7f0a0013;
+        public static final int chkTbc=0x7f0a001e;
+        public static final int chkTbcFam=0x7f0a0023;
+        public static final int chkTos=0x7f0a0016;
+        public static final int chkUsoDrogas=0x7f0a0012;
+        public static final int etApellido=0x7f0a0003;
+        public static final int etBMI=0x7f0a002d;
+        public static final int etCarotidaCuello=0x7f0a003b;
+        public static final int etCarotidaFemoral=0x7f0a003f;
+        public static final int etCuelloHombro=0x7f0a003c;
+        public static final int etDeltax=0x7f0a0030;
+        public static final int etEdad=0x7f0a000b;
+        public static final int etEjeQRS=0x7f0a0034;
+        public static final int etEmail=0x7f0a0004;
+        public static final int etFC=0x7f0a0025;
+        public static final int etFCelectro=0x7f0a0033;
+        public static final int etFR=0x7f0a0027;
+        public static final int etHombroBraquial=0x7f0a003d;
+        public static final int etHombroRadial=0x7f0a003e;
+        public static final int etNombre=0x7f0a0002;
+        public static final int etOcupacion=0x7f0a000e;
+        public static final int etOndaP=0x7f0a0035;
+        public static final int etOndaT=0x7f0a0037;
+        public static final int etOtrasEnfermedades=0x7f0a001f;
+        public static final int etPesoAct=0x7f0a002b;
+        public static final int etPesoHab=0x7f0a002a;
+        public static final int etPreDia=0x7f0a002f;
+        public static final int etPulso=0x7f0a0028;
+        public static final int etQRS=0x7f0a0036;
+        public static final int etQTC=0x7f0a0039;
+        public static final int etRitmo=0x7f0a0032;
+        public static final int etST=0x7f0a0038;
+        public static final int etTA=0x7f0a0026;
+        public static final int etTalla=0x7f0a002c;
+        public static final int etTaxilar=0x7f0a0029;
+        public static final int imageView1=0x7f0a004f;
+        public static final int listView=0x7f0a0042;
+        public static final int llSexo=0x7f0a0005;
+        public static final int menu_settings=0x7f0a0062;
+        public static final int opciones_sexo=0x7f0a0007;
+        public static final int spPaises=0x7f0a000c;
+        public static final int spProvincias=0x7f0a000d;
+        public static final int tbLock=0x7f0a0055;
+        public static final int tbRecord=0x7f0a0052;
+        public static final int tbScroll=0x7f0a0054;
+        public static final int tbStream=0x7f0a0053;
+        public static final int textView=0x7f0a0045;
+        public static final int textView3=0x7f0a0048;
+        public static final int tvPd=0x7f0a0041;
+        public static final int tvZoom=0x7f0a0056;
+        public static final int txtAntFamiliares=0x7f0a0020;
+        public static final int txtAntecedentes=0x7f0a000f;
+        public static final int txtAntropo=0x7f0a003a;
+        public static final int txtDatosPersonales=0x7f0a0001;
+        public static final int txtEdad=0x7f0a000a;
+        public static final int txtElectro=0x7f0a0031;
+        public static final int txtEnfermedadesCardio=0x7f0a001b;
+        public static final int txtEnfermedadesRespiratorias=0x7f0a0015;
+        public static final int txtHabitos=0x7f0a0010;
+        public static final int txtPatologias=0x7f0a0014;
+        public static final int txtSexo=0x7f0a0006;
+        public static final int txtSignos=0x7f0a0024;
     }
     public static final class layout {
-        public static final int activity_bluetooth=0x7f030000;
-        public static final int activity_main=0x7f030001;
+        public static final int activity_anamnesis=0x7f030000;
+        public static final int activity_bluetooth=0x7f030001;
+        public static final int activity_eeg__instructions=0x7f030002;
+        public static final int activity_ingreso=0x7f030003;
+        public static final int activity_main=0x7f030004;
+        public static final int activity_main_menu=0x7f030005;
     }
     public static final class menu {
-        public static final int activity_main=0x7f070000;
+        public static final int activity_main=0x7f090000;
     }
     public static final class string {
-        public static final int app_name=0x7f060000;
-        public static final int hello_world=0x7f060001;
-        public static final int menu_settings=0x7f060002;
-        public static final int title_activity_main=0x7f060003;
+        public static final int app_name=0x7f080000;
+        public static final int hello_world=0x7f080001;
+        public static final int menu_settings=0x7f080002;
+        public static final int title_activity_eeg__instructions=0x7f080003;
+        public static final int title_activity_main=0x7f080004;
+        public static final int title_activity_main_menu=0x7f080005;
     }
     public static final class style {
         public static final int AppTheme=0x7f040000;
+        public static final int anamnesis_TextView=0x7f040001;
+        public static final int anamnesis_editText=0x7f040002;
+        public static final int anamnesis_pestaña=0x7f040003;
     }
 }

@@ -8,6 +8,9 @@ import android.widget.Button;
 
 public class MainMenuActivity extends Activity implements View.OnClickListener{
 
+    private Button bEEG;
+    private Button bANAMNESIS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,11 +18,14 @@ public class MainMenuActivity extends Activity implements View.OnClickListener{
         ButtonInit();
     }
 
-    Button bEEG;
+
 
     void ButtonInit() {
         bEEG = (Button) findViewById(R.id.bEEG);
+        bANAMNESIS = (Button) findViewById(R.id.bANAMNESIS);
+
         bEEG.setOnClickListener(this);
+        bANAMNESIS.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
@@ -27,6 +33,10 @@ public class MainMenuActivity extends Activity implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.bEEG:
                 startActivity(new Intent("android.intent.action.EEG_Instructions"));
+                break;
+
+            case R.id.bANAMNESIS:
+                startActivity(new Intent("android.intent.action.IngresoActivity"));
                 break;
 
         }

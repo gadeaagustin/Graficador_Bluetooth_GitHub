@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_Argentina">
+        <item>Buenos Aires</item>
+        <item>Catamarca</item>
+        <item>Chaco</item>
+        <item>Chubut</item>
+        <item>Córdoba</item>
+        <item>Corrientes</item>
+        <item>Entre Ríos</item>
+        <item>Formosa</item>
+        <item>Jujuy</item>
+        <item>La Pampa</item>
+        <item>La Rioja</item>
+        <item>Mendoza</item>
+        <item>Misiones</item>
+        <item>Neuquén</item>
+        <item>Río Negro</item>
+        <item>Salta</item>
+        <item>San Juan</item>
+        <item>San Luis</item>
+        <item>Santa Cruz</item>
+        <item>Santa Fe</item>
+        <item>Santiago del Estero</item>
+        <item>Tierra del Fuego</item>
+        <item>Tucumán</item>
+
+    </string-array>
+    <string-array name="array_Brasil">
+        <item>Acre</item>
+        <item>Alagoas</item>
+        <item>Amapá</item>
+        <item>Amazonas</item>
+        <item>Ceará</item>
+        <item>Espíritu Santo</item>
+        <item>Goiás</item>
+        <item>Maranhão</item>
+        <item>Mato Grosso</item>
+        <item>Mato Grosso do Sul</item>
+        <item>Minas Gerais</item>
+        <item>Pará</item>
+        <item>Paraíba</item>
+        <item>Paraná</item>
+        <item>Pernambuco</item>
+        <item>Piauí</item>
+        <item>Río de Janeiro</item>
+        <item>Río Grande do Norte</item>
+        <item>Río Grande do Sul</item>
+        <item>Rondônia</item>
+        <item>Roraima</item>
+        <item>Santa Catarina</item>
+        <item>São Paulo</item>
+        <item>Sergipe</item>
+        <item>Tocantins</item>
+    </string-array>
+
+    <string-array name="array_Paraguay">
+        <item>Asunción</item>
+        <item>Alto Paraná</item>
+        <item>Amambay</item>
+        <item>Alto Paraguay</item>
+        <item>Boquerón</item>
+        <item>Caaguazú</item>
+        <item>Caazapá</item>
+        <item>Central</item>
+        <item>Canindeyú</item>
+        <item>Concepción</item>
+        <item>Cordillera</item>
+        <item>Guairá</item>
+        <item>Itapúa</item>
+        <item>Misiones</item>
+        <item>Ñeembucú</item>
+        <item>Paraguarí</item>
+        <item>Presidente Hayes</item>
+        <item>San Pedro</item>
+
+    </string-array>
+
+    <string-array name="array_Uruguay">
+        <item>Artigas</item>
+        <item>Canelones</item>
+        <item>Cerro Largo</item>
+        <item>Colonia</item>
+        <item>Durazno</item>
+        <item>Flores</item>
+        <item>Florida</item>
+        <item>Lavalleja</item>
+        <item>Maldonado</item>
+        <item>Montevideo</item>
+        <item>Paysandú</item>
+        <item>Río Negro</item>
+        <item>Rivera</item>
+        <item>Rocha</item>
+        <item>Salto</item>
+        <item>San José</item>
+        <item>Soriano</item>
+        <item>Tacuarembó</item>
+        <item>Treinta y Tres</item>
+
+    </string-array>
+
+</resources>

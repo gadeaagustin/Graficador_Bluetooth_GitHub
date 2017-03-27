@@ -1,2 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main$Generated" generated="true"><source path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res"/><source path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\build\generated\res\rs\debug"/><source path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug$Generated" generated="true"><source path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\debug\res"/></dataSet><dataSet config="main" generated-set="main$Generated"><source path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res"><file name="ic_action_search" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\drawable-hdpi\ic_action_search.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\drawable-hdpi\ic_launcher.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher_old" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\drawable-hdpi\ic_launcher_old.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\drawable-ldpi\ic_launcher.png" qualifiers="ldpi-v4" type="drawable"/><file name="ic_launcher_old" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\drawable-ldpi\ic_launcher_old.png" qualifiers="ldpi-v4" type="drawable"/><file name="ic_action_search" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\drawable-mdpi\ic_action_search.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\drawable-mdpi\ic_launcher.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_action_search" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\drawable-xhdpi\ic_action_search.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\drawable-xhdpi\ic_launcher.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_launcher_old" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\drawable-xhdpi\ic_launcher_old.png" qualifiers="xhdpi-v4" type="drawable"/><file name="activity_bluetooth" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\layout\activity_bluetooth.xml" qualifiers="" type="layout"/><file name="activity_main" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\layout\activity_main.xml" qualifiers="" type="layout"/><file name="activity_main" path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\menu\activity_main.xml" qualifiers="" type="menu"/><file path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\values\color.xml" qualifiers=""><color name="green">#00FF00</color><color name="cyan3">#307D7E</color><color name="white">#FFFFFF</color><color name="black">#000000</color><color name="red">  #FF0000</color><color name="orange">#FF8040</color></file><file path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\values\strings.xml" qualifiers=""><string name="title_activity_main">BT_Graph</string><string name="app_name">BT_Graph</string><string name="hello_world">Hello world!</string><string name="menu_settings">Settings</string></file><file path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="android:Theme.Light"/></file><file path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\values-v11\styles.xml" qualifiers="v11"><style name="AppTheme" parent="android:Theme.Holo.Light"/></file><file path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\main\res\values-v14\styles.xml" qualifiers="v14"><style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar"/></file></source><source path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\build\generated\res\rs\debug"/><source path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="C:\Users\Lucas\AndroidStudioProjects\Graficador_Bluetooth_GitHub_GraphView_3.0\app\src\debug\res"/></dataSet><mergedItems/></merger>
+<merger version="3"><dataSet config="main$Generated" generated="true"><source path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res"/><source path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\build\generated\res\rs\debug"/><source path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug$Generated" generated="true"><source path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\debug\res"/></dataSet><dataSet config="main" generated-set="main$Generated"><source path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res"><file name="ic_action_search" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\drawable-hdpi\ic_action_search.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\drawable-hdpi\ic_launcher.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher_old" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\drawable-hdpi\ic_launcher_old.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\drawable-ldpi\ic_launcher.png" qualifiers="ldpi-v4" type="drawable"/><file name="ic_launcher_old" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\drawable-ldpi\ic_launcher_old.png" qualifiers="ldpi-v4" type="drawable"/><file name="ic_action_search" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\drawable-mdpi\ic_action_search.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\drawable-mdpi\ic_launcher.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_action_search" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\drawable-xhdpi\ic_action_search.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\drawable-xhdpi\ic_launcher.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_launcher_old" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\drawable-xhdpi\ic_launcher_old.png" qualifiers="xhdpi-v4" type="drawable"/><file name="activity_bluetooth" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\layout\activity_bluetooth.xml" qualifiers="" type="layout"/><file name="activity_eeg__instructions" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\layout\activity_eeg__instructions.xml" qualifiers="" type="layout"/><file name="activity_main" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\layout\activity_main.xml" qualifiers="" type="layout"/><file name="activity_main_menu" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\layout\activity_main_menu.xml" qualifiers="" type="layout"/><file name="activity_main" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\menu\activity_main.xml" qualifiers="" type="menu"/><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values\color.xml" qualifiers=""><color name="green">#00FF00</color><color name="red">  #FF0000</color><color name="cyan3">#307D7E</color><color name="orange">#FF8040</color><color name="white">#FFFFFF</color><color name="black">#000000</color></file><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values\dimens.xml" qualifiers=""><dimen name="activity_vertical_margin">16dp</dimen><dimen name="activity_horizontal_margin">16dp</dimen></file><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values\strings.xml" qualifiers=""><string name="hello_world">Hello world!</string><string name="menu_settings">Settings</string><string name="title_activity_eeg__instructions">EEG_InstructionsActivity</string><string name="title_activity_main_menu">MainMenuActivity</string><string name="app_name">BT_Graph</string><string name="title_activity_main">BT_Graph</string></file><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="android:Theme.Light"/></file><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values-v11\styles.xml" qualifiers="v11"><style name="AppTheme" parent="android:Theme.Holo.Light"/></file><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values-v14\styles.xml" qualifiers="v14"><style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar"/></file><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values-w820dp\dimens.xml" qualifiers="w820dp-v13"><dimen name="activity_horizontal_margin">64dp</dimen></file><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values\array_Provincias.xml" qualifiers=""><string-array name="array_Brasil">
+        <item>Acre</item>
+        <item>Alagoas</item>
+        <item>Amapá</item>
+        <item>Amazonas</item>
+        <item>Ceará</item>
+        <item>Espíritu Santo</item>
+        <item>Goiás</item>
+        <item>Maranhão</item>
+        <item>Mato Grosso</item>
+        <item>Mato Grosso do Sul</item>
+        <item>Minas Gerais</item>
+        <item>Pará</item>
+        <item>Paraíba</item>
+        <item>Paraná</item>
+        <item>Pernambuco</item>
+        <item>Piauí</item>
+        <item>Río de Janeiro</item>
+        <item>Río Grande do Norte</item>
+        <item>Río Grande do Sul</item>
+        <item>Rondônia</item>
+        <item>Roraima</item>
+        <item>Santa Catarina</item>
+        <item>São Paulo</item>
+        <item>Sergipe</item>
+        <item>Tocantins</item>
+    </string-array><string-array name="array_Argentina">
+        <item>Buenos Aires</item>
+        <item>Catamarca</item>
+        <item>Chaco</item>
+        <item>Chubut</item>
+        <item>Córdoba</item>
+        <item>Corrientes</item>
+        <item>Entre Ríos</item>
+        <item>Formosa</item>
+        <item>Jujuy</item>
+        <item>La Pampa</item>
+        <item>La Rioja</item>
+        <item>Mendoza</item>
+        <item>Misiones</item>
+        <item>Neuquén</item>
+        <item>Río Negro</item>
+        <item>Salta</item>
+        <item>San Juan</item>
+        <item>San Luis</item>
+        <item>Santa Cruz</item>
+        <item>Santa Fe</item>
+        <item>Santiago del Estero</item>
+        <item>Tierra del Fuego</item>
+        <item>Tucumán</item>
+
+    </string-array><string-array name="array_Paraguay">
+        <item>Asunción</item>
+        <item>Alto Paraná</item>
+        <item>Amambay</item>
+        <item>Alto Paraguay</item>
+        <item>Boquerón</item>
+        <item>Caaguazú</item>
+        <item>Caazapá</item>
+        <item>Central</item>
+        <item>Canindeyú</item>
+        <item>Concepción</item>
+        <item>Cordillera</item>
+        <item>Guairá</item>
+        <item>Itapúa</item>
+        <item>Misiones</item>
+        <item>Ñeembucú</item>
+        <item>Paraguarí</item>
+        <item>Presidente Hayes</item>
+        <item>San Pedro</item>
+
+    </string-array><string-array name="array_Uruguay">
+        <item>Artigas</item>
+        <item>Canelones</item>
+        <item>Cerro Largo</item>
+        <item>Colonia</item>
+        <item>Durazno</item>
+        <item>Flores</item>
+        <item>Florida</item>
+        <item>Lavalleja</item>
+        <item>Maldonado</item>
+        <item>Montevideo</item>
+        <item>Paysandú</item>
+        <item>Río Negro</item>
+        <item>Rivera</item>
+        <item>Rocha</item>
+        <item>Salto</item>
+        <item>San José</item>
+        <item>Soriano</item>
+        <item>Tacuarembó</item>
+        <item>Treinta y Tres</item>
+
+    </string-array></file><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values\anamnesis_TextView.xml" qualifiers=""><style name="anamnesis_TextView" parent="android:Theme.Light">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style></file><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values\array_Paises.xml" qualifiers=""><string-array name="array_Paises">
+        <item>Argentina</item>
+        <item>Brasil</item>
+        <item>Paraguay</item>
+        <item>Uruguay</item>
+        <item>Boliviar</item>
+        <item>Ecuador</item>
+        <item>Venezuela</item>
+        <item>Colombia</item>
+        <item>Mexico</item>
+    </string-array></file><file name="activity_anamnesis" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\layout\activity_anamnesis.xml" qualifiers="" type="layout"/><file name="activity_ingreso" path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\layout\activity_ingreso.xml" qualifiers="" type="layout"/><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values\anamnesis_pestaña.xml" qualifiers=""><style name="anamnesis_pestaña" parent="android:Theme.Light">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style></file><file path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\main\res\values\anamnesis_EditText.xml" qualifiers=""><style name="anamnesis_editText" parent="android:Theme.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style></file></source><source path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\build\generated\res\rs\debug"/><source path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="C:\Users\aguus\OneDrive\Documentos\FACU\Android GIBIO\Graficador_Android_GIBIO_Original\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\app\src\debug\res"/></dataSet><mergedItems/></merger>

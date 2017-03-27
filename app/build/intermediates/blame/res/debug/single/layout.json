@@ -1,7 +1,31 @@
 [
     {
+        "merged": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_anamnesis.xml",
+        "source": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\src\\main\\res\\layout\\activity_anamnesis.xml"
+    },
+    {
+        "merged": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_eeg__instructions.xml",
+        "source": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\src\\main\\res\\layout\\activity_eeg__instructions.xml"
+    },
+    {
+        "merged": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_bluetooth.xml",
+        "source": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\src\\main\\res\\layout\\activity_bluetooth.xml"
+    },
+    {
+        "merged": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ingreso.xml",
+        "source": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\src\\main\\res\\layout\\activity_ingreso.xml"
+    },
+    {
+        "merged": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main_menu.xml",
+        "source": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\src\\main\\res\\layout\\activity_main_menu.xml"
+    },
+    {
         "merged": "C:\\Users\\Lucas\\AndroidStudioProjects\\Graficador_Bluetooth_GitHub_GraphView_3.0\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
         "source": "C:\\Users\\Lucas\\AndroidStudioProjects\\Graficador_Bluetooth_GitHub_GraphView_3.0\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\Lucas\\AndroidStudioProjects\\Graficador_Bluetooth_GitHub_GraphView_3.0\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_bluetooth.xml",

@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 291,
+                        "endColumn": 57,
+                        "endOffset": 344
+                    }
+                }
+            }
+        ]
+    }
+]

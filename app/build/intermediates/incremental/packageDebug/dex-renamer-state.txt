@@ -1,0 +1,4 @@
+#Mon Mar 27 12:35:47 ART 2017
+base.0=C\:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+renamed.0=classes.dex
+file.0=C\:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex

@@ -1,5 +1,29 @@
 [
     {
+        "outputFile": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v14\\values-v14.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 76,
+                    "endOffset": 127
+                },
+                "from": {
+                    "file": "C:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\src\\main\\res\\values-v14\\styles.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 17,
+                        "endColumn": 77,
+                        "endOffset": 90
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "C:\\Users\\Lucas\\AndroidStudioProjects\\Graficador_Bluetooth_GitHub_GraphView_3.0\\app\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
         "map": [
             {

@@ -1,0 +1,7 @@
+#Wed Mar 22 12:47:19 ART 2017
+base.0=C\:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-v4-18.0.0_7dff387c5d344dc2a603db0b1a6ed9d236d9936e
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\2\\GraphView-3.0_7dbf490a7cd37c583c0a81065ea9409efb009cc0\\classes.dex
+base.1=C\:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\2\\GraphView-3.0_7dbf490a7cd37c583c0a81065ea9409efb009cc0
+file.0=C\:\\Users\\aguus\\OneDrive\\Documentos\\FACU\\Android GIBIO\\Graficador_Android_GIBIO_Original\\Graficador_Bluetooth_GitHub-App_Android_GIBIO_Multiproposito\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-v4-18.0.0_7dff387c5d344dc2a603db0b1a6ed9d236d9936e\\classes.dex

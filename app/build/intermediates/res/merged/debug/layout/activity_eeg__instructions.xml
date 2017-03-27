@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="horizontal"
+    android:weightSum="100"
+    android:gravity="center|top">
+
+    <TextView
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:text="Poner aquí las instrucciones a seguir, podrían ponerse imagenes"
+        android:id="@+id/textView"
+        android:layout_gravity="center|top"
+        android:gravity="top" />
+
+
+    <Button
+        android:id="@+id/bSIGUIENTE"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="SIGUIENTE"
+        android:textSize="10dp"
+        android:textColor="@color/black"
+        android:layout_gravity="bottom" />
+</LinearLayout>

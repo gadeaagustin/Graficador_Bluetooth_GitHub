@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtDatosPersonales"
+                style="@style/anamnesis_TextView"
+                android:layout_marginTop="10dp"
+                android:text="Datos Personales"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/etNombre"
+                style="@style/anamnesis_editText"
+                android:hint="Nombre..."></EditText>
+
+            <EditText
+                android:id="@+id/etApellido"
+                style="@style/anamnesis_editText"
+                android:hint="Apellido..."></EditText>
+
+            <EditText
+                android:id="@+id/etEmail"
+                style="@style/anamnesis_editText"
+                android:hint="Email..."></EditText>
+
+
+            <LinearLayout
+                android:id="@+id/llSexo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtSexo"
+                    style="@style/anamnesis_TextView"
+                    android:text="Sexo"
+                    android:textSize="17dp" />
+
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/opciones_sexo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/btHombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Hombre"
+                        android:textSize="15dp" />
+
+                    <RadioButton
+                        android:id="@+id/btMujer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:checked="false"
+                        android:text="Mujer"
+                        android:textSize="15dp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtEdad"
+                    style="@style/anamnesis_TextView"
+                    android:layout_width="wrap_content"
+                    android:text="Fecha de Nacimiento" />
+
+                <EditText
+                    android:id="@+id/etEdad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="dd/mm/aaaa"
+                    android:inputType="date"></EditText>
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/spPaises"
+                style="@style/anamnesis_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pais.." />
+
+            <Spinner
+                android:id="@+id/spProvincias"
+                style="@style/anamnesis_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Provincia.." />
+
+            <EditText
+                android:id="@+id/etOcupacion"
+                style="@style/anamnesis_editText"
+                android:hint="Ocupación..."></EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtAntecedentes"
+                style="@style/anamnesis_TextView"
+                android:layout_marginTop="10dp"
+                android:textSize="25dp"
+                android:text="Antecedentes" />
+
+            <TextView
+                android:id="@+id/txtHabitos"
+                style="@style/anamnesis_TextView"
+                android:layout_marginTop="10dp"
+                android:text="Habitos Tóxicos"
+                android:textSize="18dp"
+                android:textStyle="bold|italic" />
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:text="Bebidas Alcohólicas"
+                    android:id="@+id/chkBebidasAlcoholicas"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+
+                <CheckBox
+                    android:text="Uso ocasional de drogas de abuso"
+                    android:id="@+id/chkUsoDrogas"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+
+                <CheckBox
+                    android:text="Tabaquismos"
+                    android:id="@+id/chkTabaquismo"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/txtPatologias"
+                style="@style/anamnesis_TextView"
+                android:layout_marginTop="10dp"
+                android:text="Patologías"
+                android:textSize="18dp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/txtEnfermedadesRespiratorias"
+                style="@style/anamnesis_TextView"
+                android:layout_marginTop="10dp"
+                android:text="Enfermedades Médicas - Respiratorias"
+                android:textSize="18dp"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:text="Tos"
+                    android:id="@+id/chkTos"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+
+                <CheckBox
+                    android:text="Expectoración"
+                    android:id="@+id/chkExpectoracion"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+
+                <CheckBox
+                    android:text="Hemoptisis"
+                    android:id="@+id/chkHemoptisis"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+            </LinearLayout>
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:text="Asma"
+                    android:id="@+id/chkAsma"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+
+                <CheckBox
+                    android:text="Neumonía"
+                    android:id="@+id/chkNeumonía"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtEnfermedadesCardio"
+                style="@style/anamnesis_TextView"
+                android:layout_marginTop="10dp"
+                android:text="Enfermedades Médicas - Cardiovasculares"
+                android:textSize="18dp"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:text="DBT"
+                    android:id="@+id/chkDbt"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+
+                <CheckBox
+                    android:text="HTA"
+                    android:id="@+id/chkHta"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+
+                <CheckBox
+                    android:text="TBC"
+                    android:id="@+id/chkTbc"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"></CheckBox>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etOtrasEnfermedades"
+                style="@style/anamnesis_editText"
+                android:hint="Otras Enfermedades.."></EditText>
+
+            <TextView
+                android:id="@+id/txtAntFamiliares"
+                style="@style/anamnesis_TextView"
+                android:layout_marginTop="10dp"
+                android:text="Antecedentes Familiares"
+                android:textSize="18dp"
+                android:textStyle="bold|italic" />
+
+            <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:text="DBT"
+                        android:id="@+id/chkDbtFam"
+                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"></CheckBox>
+
+                    <CheckBox
+                        android:text="HTA"
+                        android:id="@+id/chkHtaFam"
+                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"></CheckBox>
+
+                    <CheckBox
+                        android:text="TBC"
+                        android:id="@+id/chkTbcFam"
+                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"></CheckBox>
+                </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtSignos"
+                style="@style/anamnesis_TextView"
+                android:layout_marginTop="10dp"
+                android:text="Signos Vitales"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/etFC"
+                style="@style/anamnesis_editText"
+                android:hint="FC"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/etTA"
+                style="@style/anamnesis_editText"
+                android:hint="TA"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/etFR"
+                style="@style/anamnesis_editText"
+                android:hint="FR"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/etPulso"
+                style="@style/anamnesis_editText"
+                android:hint="Pulso"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/etTaxilar"
+                style="@style/anamnesis_editText"
+                android:hint="T° Axilar"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/etPesoHab"
+                style="@style/anamnesis_editText"
+                android:hint="Peso Habitual"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/etPesoAct"
+                style="@style/anamnesis_editText"
+                android:hint="Peso Actual"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/etTalla"
+                style="@style/anamnesis_editText"
+                android:hint="Talla"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/etBMI"
+                style="@style/anamnesis_editText"
+                android:hint="BMI"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/PreSis"
+                style="@style/anamnesis_editText"
+                android:hint="Presión Sitótica"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/etPreDia"
+                style="@style/anamnesis_editText"
+                android:hint="Presión Diastólica"
+                android:inputType="number"></EditText>
+            <EditText
+                android:id="@+id/etDeltax"
+                style="@style/anamnesis_editText"
+                android:hint="Delta X"
+                android:inputType="number"></EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtElectro"
+                style="@style/anamnesis_TextView"
+                android:layout_marginTop="10dp"
+                android:text="Electrocardiograma"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/etRitmo"
+                style="@style/anamnesis_editText"
+                android:hint="Ritmo"></EditText>
+            <EditText
+                android:id="@+id/etFCelectro"
+                style="@style/anamnesis_editText"
+                android:hint="FC"></EditText>
+            <EditText
+                android:id="@+id/etEjeQRS"
+                style="@style/anamnesis_editText"
+                android:hint="Eje QRS"></EditText>
+            <EditText
+                android:id="@+id/etOndaP"
+                style="@style/anamnesis_editText"
+                android:hint="Onda P"></EditText>
+            <EditText
+                android:id="@+id/etQRS"
+                style="@style/anamnesis_editText"
+                android:hint="QRS"></EditText>
+            <EditText
+                android:id="@+id/etOndaT"
+                style="@style/anamnesis_editText"
+                android:hint="Onda T"></EditText>
+            <EditText
+                android:id="@+id/etST"
+                style="@style/anamnesis_editText"
+                android:hint="ST"></EditText>
+            <EditText
+                android:id="@+id/etQTC"
+                style="@style/anamnesis_editText"
+                android:hint="QTC"></EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtAntropo"
+                style="@style/anamnesis_TextView"
+                android:layout_marginTop="10dp"
+                android:text="Mediciones Antropométricas"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/etCarotidaCuello"
+                style="@style/anamnesis_editText"
+                android:hint="Carótida - Cuello"></EditText>
+            <EditText
+                android:id="@+id/etCuelloHombro"
+                style="@style/anamnesis_editText"
+                android:hint="Cuello - Hombro"></EditText>
+            <EditText
+                android:id="@+id/etHombroBraquial"
+                style="@style/anamnesis_editText"
+                android:hint="Hombro - Braquial"></EditText>
+            <EditText
+                android:id="@+id/etHombroRadial"
+                style="@style/anamnesis_editText"
+                android:hint="Hombro - Radial"></EditText>
+            <EditText
+                android:id="@+id/etCarotidaFemoral"
+                style="@style/anamnesis_editText"
+                android:hint="Carótida - Femoral"></EditText>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bENVIAR"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Enviar Datos" />
+    </LinearLayout>
+</ScrollView>
